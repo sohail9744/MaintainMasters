@@ -1,0 +1,63 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+>
+	<Dialog
+		contentWidth="40%"
+		title="Add New Legal Status"
+	>
+		<content>
+			<f:SimpleForm
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="4"
+				adjustLabelSpan="true"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text=""/>
+					<Label text="Legal Status" required="true"/>
+					<Input value="{/Legalstatus}" editable="false"/>
+                    <Label text="Is Company"/>
+					 <RadioButtonGroup columns="3" selectedIndex="{=${/Iscompany} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+                    <Label text="Is Partnership"/>
+					 <RadioButtonGroup columns="3" selectedIndex="{=${/Ispartnership} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+                    <Label text="Is owner"/>
+					 <RadioButtonGroup columns="3" selectedIndex="{=${/Isowner} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+					<Label text="Is Active"/>
+					 <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button
+				text="OK"
+				press="onlegalStatusCreate"
+			/>
+		</beginButton>
+		<endButton>
+			<Button
+				text="Cancel"
+				press="onlegalStatusCancel"
+			/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,51 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+>
+	<Dialog
+		contentWidth="40%"
+		title="Add New Export Payment Terms"
+	>
+		<content>
+			<f:SimpleForm
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="4"
+				adjustLabelSpan="true"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text=""/>
+					<Label text="Payment Term" required="true"/>
+					<Input value="{/paymentterm}" editable="false"/>
+					<Label text="Business Name" required="true"/>
+					<Input value="{/businessname}" editable="false"/>
+					<Label text="Vertical" required="true"/>
+					<Input value="{/vertical}" editable="false"/>
+                    <Label text="Class" required="true"/>
+					<Input value="{/class}" editable="false"/>
+					<Label text="Credit Days"/>
+					<Input value="{/creditdays}"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button
+				text="OK"
+				press="onExpPayTermCreate"
+			/>
+		</beginButton>
+		<endButton>
+			<Button
+				text="Cancel"
+				press="onExpPayTermCancel"
+			/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog contentWidth="80%" title="Add New Reminder">
+        <content>
+            <f:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false">
+                <f:content>
+                    <core:Title text="" />
+                    <Label text="Title" required="true"/>
+                    <Input value="{/title}" editable="false"/>
+                     <Label text="Days No" />
+                    <Input value="{/daysno}" />
+                    <Label text="To Roles" />
+                    <Input value="{/toroles}" />
+                    <Label text="CC Roles" />
+                    <Input value="{/ccroles}" />
+                    <Label text="Status" />
+                    <Input value="{/status}" />
+                    <Label text="Email Template Body" />
+                    <Input value="{/emailtemplatebody}" />
+                    <Label text="Is Active" />
+                    <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <beginButton>
+            <Button text="OK" press="onReminderCreate" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press="onReminderCancel" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,66 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+>
+	<Dialog
+		contentWidth="40%"
+		title="Add New Remarks"
+	>
+		<content>
+			<f:SimpleForm
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="4"
+				adjustLabelSpan="true"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text=""/>
+					<Label text="Remarks" required="true"/>
+					<Input value="{/remarks}" editable="false"/>
+					<Label text="Is Free Text"/>
+					<RadioButtonGroup columns="3" selectedIndex="{=${/isfreetext} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+                    <Label text="Is Applicable For MDEDSB"/>
+					<RadioButtonGroup columns="3" selectedIndex="{=${/isapplicableformdedsb} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+                    <Label text="Is Active"/>
+					 <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+					<Label text="Created By"/>
+					<Input value="{/createdby}"/>
+                    <Label text="Modified By"/>
+					<Input value="{/modifiedby}"/>
+					<Label text="Created Date"/>
+					<DatePicker value="{/createddate}" placeholder="Enter Date" valueFormat="MM.dd.yyyy" change="handleCreatedDateChange"/>
+					<Label text="Modified Date"/>
+					<DatePicker value="{/modifieddate}" placeholder="Enter Date" valueFormat="MM.dd.yyyy" change="handleModifiedDateChange"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button
+				text="OK"
+				press="onRemarksCreate"
+			/>
+		</beginButton>
+		<endButton>
+			<Button
+				text="Cancel"
+				press="onRemarksCancel"
+			/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

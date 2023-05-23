@@ -1,0 +1,997 @@
+<mvc:View controllerName="com.iffco.maintainmasterdata.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:t="sap.ui.table">
+    <SplitContainer id="SplitContDemo" initialDetail="detail" initialMaster="master">
+        <detailPages>
+           <Page id="detail1" title="Currency" titleAlignment="Center" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table id="ruleEngineTableId" items="{/zdd_cr_currency_vh}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+										<OverflowToolbar style="Clear">
+                            <Title text="Maintain Currency" level="H2" />
+                            <ToolbarSpacer />
+                            <Button text="Add Entry" type="Emphasized" press="handleAddCurrency" />
+                            <!-- <Button text="Edit" type="Emphasized" press="handleEditCurrency" /> -->
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Currency"/>
+										</Column>
+										<Column>
+											<Text text="Abbreviation"/>
+										</Column>
+										<Column>
+											<Text text="Country"/>
+										</Column>
+										<Column>
+											<Text text="Forexrate"/>
+										</Column>
+										<Column>
+											<Text text="Is Active"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation" press="handleEditCurrency">
+											<cells>
+												<Text text="{currency}"/>
+												<Text text="{abbreviation}"/>
+												<Text text="{country}"/>
+												<Text text="{forexrate}"/>
+												<Text text="{isactive}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>	
+            </Page>
+            <Page id="detail2" title="Bank Master" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_BANK_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+						<OverflowToolbar style="Clear">
+                            <Title text="Maintain Bank Master" level="H2" />
+                            <ToolbarSpacer />
+                            <Button text="Add Entry" type="Emphasized" press="handleAddBankMaster" />
+                            <!-- <Button text="Edit" type="Emphasized" press="handleEditBankMaster" /> -->
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Bank"/>
+										</Column>
+										<Column>
+											<Text text="Country"/>
+										</Column>
+										<Column>
+											<Text text="Is Active"/>
+										</Column>
+										<Column>
+											<Text text="Is Bank With Condition"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation" press="handleEditBankMaster">
+											<cells>
+												<Text text="{bank}"/>
+												<Text text="{country}"/>
+												<Text text="{isactive}"/>
+												<Text text="{isbank_with_condition}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail3" title="Channel Master" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_Channel_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+						 <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Channel Master" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddCM" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditCM" /> -->
+                            </content>
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Channel"/>
+										</Column>
+										<Column>
+											<Text text="Is Active"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation" press="handleEditCM">
+											<cells>
+												<Text text="{channel}"/>
+												<Text text="{isactive}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail4" title="Channel Group" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_ChannleGroup_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+						 <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Channel Group" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddCG" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditCG" /> -->
+                            </content>
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Channel Group"/>
+										</Column>
+										<Column>
+											<Text text="Is Active"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation" press="handleEditCG">
+											<cells>
+												<Text text="{channelgroup}"/>
+												<Text text="{isactive}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail5" title="Business Unit" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+            <ScrollContainer height="100%" width="100%" horizontal="true" vertical="true">
+                <Table items="{/ZDD_BusinessUnit_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+						<OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Business Unit" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddBU" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditBU" /> -->
+                            </content>
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column width="12em">
+											<Text text="Business Unit"/>
+										</Column>
+										<Column width="6em">
+											<Text text="BU Code"/>
+										</Column>
+										<Column width="12em">
+											<Text text="Child Business Unit"/>
+										</Column>
+										<Column width="6em">
+											<Text text="Vertical"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="Currency"/>
+										</Column>
+										<Column width="6em">
+											<Text text="ERP Source"/>
+										</Column>
+										<Column width="6em">
+											<Text text="BU Short Code"/>
+										</Column>
+										<Column width="6em">
+											<Text text="Trading"/>
+										</Column>
+                                        <Column width="8em">
+											<Text text="Max Credit Limit Applicable"/>
+										</Column>
+										<Column width="8em">
+											<Text text="Maximum Credit Days Logic"/>
+										</Column>
+										<Column width="6em">
+											<Text text="cc"/>
+										</Column>
+										<Column width="10em">
+											<Text text="CC Email Id"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="FA"/>
+										</Column>
+										<Column width="10em">
+											<Text text="Fa Email Id"/>
+										</Column>
+										<Column width="6em">
+											<Text text="HOF"/>
+										</Column>
+										<Column width="10em">
+											<Text text="HOF Email Id"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="GM"/>
+										</Column>
+										<Column width="10em">
+											<Text text="GM Email Id"/>
+										</Column>
+										<Column width="6em">
+											<Text text="CEO"/>
+										</Column>
+										<Column width="10em">
+											<Text text="CEO Email Id"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="RF"/>
+										</Column>
+                                        <Column width="10em">
+											<Text text="RF Email Id"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="CFR"/>
+										</Column>
+                                        <Column width="10em">
+											<Text text="CFR Email Id"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="DF"/>
+										</Column>
+                                        <Column width="10em">
+											<Text text="DF Email Id"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="MD"/>
+										</Column>
+                                        <Column width="10em">
+											<Text text="MD Email Id"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="ED"/>
+										</Column>
+                                        <Column width="10em">
+											<Text text="ED Email Id"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="SB"/>
+										</Column>
+                                        <Column width="10em">
+											<Text text="SB Email Id"/>
+										</Column>
+                                        <Column width="16em">
+											<Text text="MDM"/>
+										</Column>
+                                        <Column width="16em">
+											<Text text="MDM Email Id"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="Is SND"/>
+										</Column>
+                                        <Column width="6em">
+											<Text text="Is Active"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation" press="handleEditBU">
+											<cells>
+												<Text text="{Businessunit}"/>
+												<Text text="{bucode}"/>
+												<Text text="{childbusinessunit}"/>
+												<Text text="{vertical}"/>
+                                                <Text text="{currency}"/>
+												<Text text="{erpsource}"/>
+												<Text text="{bushortcode}"/>
+												<Text text="{trading}"/>
+                                                <Text text="{maxcreditlimitapplicable}"/>
+												<Text text="{maximumcreditdayslogic}"/>
+												<Text text="{cc}"/>
+												<Text text="{ccemailid}"/>
+                                                <Text text="{fa}"/>
+												<Text text="{faemailid}"/>
+												<Text text="{hof}"/>
+												<Text text="{hofemailid}"/>
+                                                <Text text="{gm}"/>
+												<Text text="{gmemailid}"/>
+												<Text text="{Ceo}"/>
+												<Text text="{ceoemailid}"/>
+                                                <Text text="{rf}"/>
+												<Text text="{rfemailid}"/>
+												<Text text="{Cfr}"/>
+												<Text text="{cfremailid}"/>
+                                                <Text text="{df}"/>
+												<Text text="{dfemailid}"/>
+												<Text text="{md}"/>
+												<Text text="{mdemailid}"/>
+                                                <Text text="{ed}"/>
+												<Text text="{edemailid}"/>
+												<Text text="{sb}"/>
+												<Text text="{sbemailid}"/>
+                                                <Text text="{mdm}"/>
+												<Text text="{mdmemailid}"/>
+												<Text text="{issnd}"/>
+												<Text text="{isactive}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+            </ScrollContainer>
+            </Page>
+            <Page id="detail6" title="Violation" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_VIOLATION}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+						<OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Violation" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddViolation" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditViolation" /> -->
+                                </content>
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Business Unit Name"/>
+										</Column>
+										<Column>
+											<Text text="Vertical Name"/>
+										</Column>
+                                        <Column>
+											<Text text="Violation Type Name"/>
+										</Column>
+										<Column>
+											<Text text="Role Name"/>
+										</Column>
+                                        <Column>
+											<Text text="Is Active"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation" press="handleEditViolation">
+											<cells>
+												<Text text="{businessunitname}"/>
+												<Text text="{verticalname}"/>
+                                                <Text text="{violationtypename}"/>
+												<Text text="{rolename}"/>
+                                                <Text text="{isactive}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail7" title="Sub channel" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_SubChannel_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+						 <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Sub channel" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddSC" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditSC" /> -->
+                            </content>
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Sub Channel"/>
+										</Column>
+										<Column>
+											<Text text="Is Active"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation" press="handleEditSC">
+											<cells>
+												<Text text="{subchannel}"/>
+												<Text text="{isactive}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail8" title="Reminder" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_REMINDER}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Reminder" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddReminder" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditReminder" /> -->
+                               </content>
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Title"/>
+										</Column>
+										<Column>
+											<Text text="Days No"/>
+										</Column>
+                                        <Column>
+											<Text text="To Roles"/>
+										</Column>
+										<Column>
+											<Text text="CC Roles"/>
+										</Column>
+                                        <Column>
+											<Text text="Status"/>
+										</Column>
+                                        <Column>
+											<Text text="Email Template Body"/>
+										</Column>
+                                        <Column>
+											<Text text="Is Active"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation" press="handleEditReminder">
+											<cells>
+												<Text text="{title}"/>
+												<Text text="{daysno}"/>
+                                                <Text text="{toroles}"/>
+												<Text text="{ccroles}"/>
+                                                <Text text="{status}"/>
+                                                <Text text="{emailtemplatebody}"/>
+                                                <Text text="{isactive}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail9" title="Vertical" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_Vertical_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Vertical" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddVertical" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditVertical" /> -->
+                                </content>
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Vertical"/>
+										</Column>
+										<Column>
+											<Text text="Vertical Description"/>
+										</Column>
+                                        <Column>
+											<Text text="MD Approval Required"/>
+										</Column>
+										<Column>
+											<Text text="Site Visit Compulsion"/>
+										</Column>
+                                        <Column>
+											<Text text="Is Active"/>
+										</Column>
+                                        <Column>
+											<Text text="Is Cache"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation" press="handleEditVertical">
+											<cells>
+												<Text text="{vertical}"/>
+												<Text text="{verticaldescription}"/>
+                                                <Text text="{mdapprovalrequired}"/>
+												<Text text="{sitevisitcompulsion}"/>
+                                                <Text text="{isactive}"/>
+                                                <Text text="{iscash}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail10" title="DOA MASTER" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_DELEGATION_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain DOA MASTER" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddDOAMaster" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditDOAMaster" /> -->
+                               </content>
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Customer Type"/>
+										</Column>
+                                        <Column>
+											<Text text="Class"/>
+										</Column>
+                                        <Column>
+											<Text text="Business Unit"/>
+										</Column>
+                                        <Column>
+											<Text text="Vertical"/>
+										</Column>
+                                        <Column>
+											<Text text="Minimum Credit Limit"/>
+										</Column>
+                                        <Column>
+											<Text text="Maximum Credit Limit"/>
+										</Column>
+                                        <Column>
+											<Text text="Last Selected Role"/>
+										</Column>
+                                        <Column>
+											<Text text="Is CAD"/>
+										</Column>
+                                        <Column>
+											<Text text="Role Type"/>
+										</Column>
+                                        <Column>
+											<Text text="Informative Role"/>
+										</Column>
+                                        <Column>
+											<Text text="Is Active"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Navigation" press="handleEditDOAMaster">
+											<cells>
+												<Text text="{customertype}"/>
+												<Text text="{class}"/>
+                                                <Text text="{businessunit}"/>
+												<Text text="{vertical}"/>
+                                                <Text text="{minimumcreditlimit}"/>
+                                                <Text text="{maximumcreditlimit}"/>
+                                                <Text text="{lastselectedrole}"/>
+												<Text text="{iscad}"/>
+                                                <Text text="{roletype}"/>
+												<Text text="{informativerole}"/>
+                                                <Text text="{isactive}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail11" title="Delegation Trading" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_DELEGATION_TR_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Delegation Trading" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddDelegationTR" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditDelegationTR" /> -->
+                                </content>
+                        </OverflowToolbar>
+									</headerToolbar>
+									<columns>
+										<Column>
+											<Text text="Customer Type"/>
+										</Column>
+                                        <Column>
+											<Text text="Credit Limit Type"/>
+										</Column>
+                                        <Column>
+											<Text text="Class Type"/>
+										</Column>
+                                        <Column>
+											<Text text="Business Unit"/>
+										</Column>
+                                        <Column>
+											<Text text="Vertical"/>
+										</Column>
+                                        <Column>
+                                            <Text text="Segment" />
+                                        </Column>
+                                         <Column>
+                                            <Text text="Minimum Quantity Limit" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Maximum Quantity Limit" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Minimum Value Limit" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Maximum Value Limit" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Last Selected Role" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Role Type" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Informative Role" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Is Cad" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Is Active" />
+                                        </Column>
+									</columns>
+									<items>
+                                        <ColumnListItem type="Navigation" press="handleEditDelegationTR">
+                                            <cells>
+                                                <Text text="{customertype}" />
+                                                <Text text="{creditlimittype}" />
+                                                <Text text="{businessunit}" />
+                                                <Text text="{vertical}" />
+                                                <Text text="{segment}" />
+                                                <Text text="{minimumquantitylimit}" />
+                                                <Text text="{maximumquantitylimit}" />
+                                                <Text text="{minimumvaluelimit}" />
+                                                <Text text="{maximumvaluelimit}" />
+                                                <Text text="{lastselectedrole}" />
+                                                <Text text="{roletype}" />
+                                                <Text text="{informativerole}" />
+                                                <Text text="{iscad}" />
+                                                <Text text="{isactive}" />
+                                            </cells>
+                                        </ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail12" title="Credit days per Domestic" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_CREDIT_DOM_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Credit days per Domestic" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddCDPD" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditCDPD" /> -->
+                                </content>
+                        </OverflowToolbar>
+									</headerToolbar>	
+                                    <columns>
+                                        <Column>
+                                            <Text text="Sr No" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Channel" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Sub Channel" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Line Of Business Type" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Class Type" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Maximum Credit Days" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Business Unit" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Vertical" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="DOA Role" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Is Proxima" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Is Active" />
+                                        </Column>
+                                      </columns>
+									<items>
+                                        <ColumnListItem type="Navigation" press="handleEditCDPD">
+                                            <cells>
+                                                <Text text="{srno}" />
+                                                <Text text="{channel}" />
+                                                <Text text="{subchannel}" />
+                                                <Text text="{lineofbusinesstype}" />
+                                                <Text text="{classtype}" />
+                                                <Text text="{maximumcreditdays}" />
+                                                <Text text="{businessunit}" />
+                                                <Text text="{vertical}" />
+                                                <Text text="{doarole}" />
+                                                <Text text="{isproxima}" />
+                                                <Text text="{isactive}" />
+                                            </cells>
+                                        </ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail13" title="Legal Status" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_LEGAL_STATUS_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Legal Status" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddLegalStatus" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditLegalStatus" /> -->
+                                </content>
+                        </OverflowToolbar>
+									</headerToolbar>	
+                                        <columns>
+                                            <Column>
+                                                <Text text="Legal Status" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Company" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Partnership" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Owner" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Active" />
+                                            </Column>
+                                        </columns>
+									<items>
+                                        <ColumnListItem type="Navigation" press="handleEditLegalStatus">
+                                            <cells>
+                                                <Text text="{Legalstatus}" />
+                                                <Text text="{Iscompany}" />
+                                                <Text text="{Ispartnership}" />
+                                                <Text text="{Isowner}" />
+                                                <Text text="{isactive}" />
+                                            </cells>
+                                        </ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail14" title="Line of Business Type" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/zdd_lineofbusiness_vh}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Line of Business Type" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddLOBT" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditLOBT" /> -->
+                               </content>
+                        </OverflowToolbar>
+									</headerToolbar>	
+                                        <columns>
+                                            <Column>
+                                                <Text text="Channel Group" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Channel" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Sub Channel" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Line Of Business Type" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Active" />
+                                            </Column>
+                                        </columns>
+									<items>
+                                        <ColumnListItem type="Navigation" press="handleEditLOBT">
+                                            <cells>
+                                                <Text text="{channelgroup}" />
+                                                <Text text="{channel}" />
+                                                <Text text="{subchannel}" />
+                                                <Text text="{lineofbusinesstype}" />
+                                                <Text text="{isactive}" />
+                                            </cells>
+                                        </ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail15" title="Payment Terms" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/zdd_paymentterm_vh}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Payment Terms" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddPayTerms" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditPayTerms" /> -->
+                               </content>
+                        </OverflowToolbar>
+									</headerToolbar>	
+                                         <columns>
+                                            <Column>
+                                                <Text text="Customer Type" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Credit Type" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Payment Terms" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Cad" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Till Sb" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Active" />
+                                            </Column>
+                                        </columns>
+									<items>
+                                        <ColumnListItem type="Navigation" press="handleEditPayTerms">
+                                            <cells>
+                                                <Text text="{customertype}" />
+                                                <Text text="{credittype}" />
+                                                <Text text="{paymentterm}" />
+                                                <Text text="{iscad}" />
+                                                <Text text="{tillsb}" />
+                                                <Text text="{isactive}" />
+                                            </cells>
+                                        </ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail16" title="Export Payment Terms" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_EXP_PYTTERM_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Export Payment Terms" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddExpPayTerms" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditExpPayTerms" /> -->
+                               </content>
+                        </OverflowToolbar>
+									</headerToolbar>	
+                                         <columns>
+                                            <Column>
+                                                <Text text="Payment Terms" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Business Name" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Vertical" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Class" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Credit Days" />
+                                            </Column>
+                                        </columns>
+									<items>
+                                        <ColumnListItem type="Navigation" press="handleEditExpPayTerms">
+                                            <cells>
+                                                <Text text="{paymentterm}" />
+                                                <Text text="{businessname}" />
+                                                <Text text="{vertical}" />
+                                                <Text text="{class}" />
+                                                <Text text="{creditdays}" />
+                                            </cells>
+                                        </ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail17" title="Country" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/zdd_country_vh}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Country" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddCountry" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditCountry" /> -->
+                               </content>
+                        </OverflowToolbar>
+									</headerToolbar>	
+                                         <columns>
+                                            <Column>
+                                                <Text text="Country" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Code" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Rating" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Active" />
+                                            </Column>
+                                        </columns>
+									<items>
+                                        <ColumnListItem type="Navigation" press="handleEditCountry">
+                                            <cells>
+                                                <Text text="{country}" />
+                                                <Text text="{code}" />
+                                                <Text text="{rating}" />
+                                                <Text text="{isactive}" />
+                                            </cells>
+                                        </ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+            <Page id="detail18" title="Export Remarks" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_REMARKS}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Remarks" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddRemarks" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditRemarks" /> -->
+                               </content>
+                        </OverflowToolbar>
+									</headerToolbar>	
+                                         <columns>
+                                            <Column>
+                                                <Text text="Remarks" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Free Text" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Applicable For MDEDSB" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Is Active" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Created By" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Modified By" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Created Date" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Modified Date" />
+                                            </Column>
+                                        </columns>
+									<items>
+                                        <ColumnListItem type="Navigation" press="handleEditRemarks">
+                                            <cells>
+                                                <Text text="{remarks}"/>
+                                                <Text text="{isfreetext}"/>
+                                                <Text text="{isapplicableformdedsb}"/>
+                                                <Text text="{isactive}"/>
+                                                <Text text="{createdby}"/>
+                                                <Text text="{modifiedby}"/>
+                                                <Text text="{createddate}"/>
+                                                <Text text="{modifieddate}"/>
+                                            </cells>
+                                        </ColumnListItem>
+									</items>
+								</Table>
+            </Page>
+        </detailPages>
+        <masterPages>
+            <Page id="master" title="Master Data" backgroundDesign="List">
+                <List>
+                    <StandardListItem title="Currency Master" type="Navigation" press=".navigateToCurrency" />
+                    <StandardListItem title="Bank Master" type="Navigation" press=".navigateToBM" />
+                    <StandardListItem title="Channel Master" type="Navigation" press=".navigateToChannelMstr" />
+                    <StandardListItem title="Channel Group" type="Navigation" press=".navigateToChannelGrp" />
+                    <StandardListItem title="Business Unit" type="Navigation" press=".navigateToBU" />
+                    <StandardListItem title="Violation" type="Navigation" press=".navigateToViolation" />
+                    <StandardListItem title="Sub channel" type="Navigation" press=".navigateToSubChannel" />
+                    <StandardListItem title="Reminder" type="Navigation" press=".navigateToReminder" />
+                    <StandardListItem title="Vertical" type="Navigation" press=".navigateToVertical" />
+                    <StandardListItem title="DOA MASTER" type="Navigation" press=".navigateToDOA" />
+                    <StandardListItem title="Delegation Trading" type="Navigation" press=".navigateToDelegationTR" />
+                    <StandardListItem title="Credit days per Domestic" type="Navigation" press=".navigateToCDPD" />
+                    <StandardListItem title="Legal Status" type="Navigation" press=".navigateToLegalStatus" />
+                    <StandardListItem title="Line of Business Type" type="Navigation" press=".navigateToLOBT" />
+                    <StandardListItem title="Payment Terms" type="Navigation" press=".navigateToPayTerms" />
+                    <StandardListItem title="Export Payment Terms" type="Navigation" press=".navigateToExpPayTerms" />
+                <StandardListItem title="Country" type="Navigation" press=".navigateToCountry" />
+                    <StandardListItem title="Remarks" type="Navigation" press=".navigateToRemarks" />
+                </List>
+            </Page>
+        </masterPages>
+    </SplitContainer>
+</mvc:View>

@@ -1,0 +1,54 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form"
+>
+	<Dialog
+		contentWidth="40%"
+		title="Add New Currency Master"
+	>
+		<content>
+			<f:SimpleForm
+				layout="ResponsiveGridLayout"
+				labelSpanXL="4"
+				labelSpanL="4"
+				labelSpanM="4"
+				labelSpanS="4"
+				adjustLabelSpan="true"
+				emptySpanXL="0"
+				emptySpanL="0"
+				emptySpanM="0"
+				emptySpanS="0"
+				singleContainerFullSize="true">
+				<f:content>
+					<core:Title text=""/>
+					<Label text="Currency" required="true"/>
+					<Input value="{/currency}" editable="false"/>
+					<Label text="Abbreviation" required="true"/>
+					<Input value="{/abbreviation}" editable="false"/>
+					<Label text="Country"/>
+					<Input value="{/country}"/>
+					<Label text="Forexrate" required="true"/>
+					<Input type="Number" value="{/forexrate}"/>
+					<Label text="Is Active"/>
+					 <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button
+				text="OK"
+				press="onCurrencyCreate"
+			/>
+		</beginButton>
+		<endButton>
+			<Button
+				text="Cancel"
+				press="onCurrencyCancel"
+			/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

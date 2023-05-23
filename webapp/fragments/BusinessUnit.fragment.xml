@@ -1,0 +1,98 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    <Dialog contentWidth="80%" title="Add New Business Unit">
+        <content>
+            <f:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="true">
+                <f:content>
+                    <core:Title text="" />
+                    <Label text="Business Unit" required="true"/>
+                    <Input value="{/Businessunit}" editable="false"/>
+                    <Label text="BU Code" required="true"/>
+                    <Input value="{/bucode}" editable="false"/>
+                    <Label text="vertical" required="true"/>
+                    <Input value="{/vertical}" editable="false"/>
+                    <Label text="Child Business Unit" />
+                    <Input value="{/childbusinessunit}" />
+                    <Label text="Currency" />
+                    <Input value="{/currency}" />
+                    <Label text="ERP Source" />
+                    <Input value="{/erpsource}" />
+                    <Label text="BU Short Code" />
+                    <Input value="{/bushortcode}" />
+                    <Label text="Trading" />
+                    <Input value="{/trading}" />
+                    <Label text="Max Credit Limit Applicable" />
+                    <Input value="{/maxcreditlimitapplicable}" />
+                    <core:Title text="" />
+                    <Label text="Maximum Credit Days Logic" />
+                    <Input value="{/maximumcreditdayslogic}" />
+                    <Label text="CC" />
+                    <Input value="{/cc}" />
+                    <Label text="CC Email Id" />
+                    <Input value="{/ccemailid}" />
+                    <Label text="FA" />
+                    <Input value="{/fa}" />
+                    <Label text="FA Email Id" />
+                    <Input value="{/faemailid}" />
+                    <Label text="HOF" />
+                    <Input value="{/hof}" />
+                    <Label text="HOF Email Id" />
+                    <Input value="{/hofemailid}" />
+                    <Label text="GM" />
+                    <Input value="{/gm}" />
+                    <core:Title text="" />
+                    <Label text="GM Email Id" />
+                    <Input value="{/gmemailid}" />
+                    <Label text="CEO" />
+                    <Input value="{/Ceo}" />
+                    <Label text="CEO Email Id" />
+                    <Input value="{/ceoemailid}" />
+                    <Label text="RF" />
+                    <Input value="{/rf}" />
+                    <Label text="RF Email Id" />
+                    <Input value="{/rfemailid}" />
+                    <Label text="CFR" />
+                    <Input value="{/cfr}" />
+                    <Label text="CFR Email Id" />
+                    <Input value="{/cfremailid}" />
+                    <Label text="DF" />
+                    <Input value="{/df}" />
+                    <core:Title text="" />
+                    <Label text="DF Email Id" />
+                    <Input value="{/dfemailid}" />
+                    <Label text="MD" />
+                    <Input value="{/md}" />
+                    <Label text="MD Email Id" />
+                    <Input value="{/mdemailid}" />
+                    <Label text="ED" />
+                    <Input value="{/ed}" />
+                    <Label text="ED Email Id" />
+                    <Input value="{/edemailid}" />
+                    <Label text="SB" />
+                    <Input value="{/sb}" />
+                    <Label text="SB Email Id" />
+                    <Input value="{/sbemailid}" />
+                    <Label text="MDM" />
+                    <Input value="{/mdm}" />
+                    <Label text="MDM Email Id" />
+                    <Input value="{/mdmemailid}" />
+                    <Label text="Is SND" />
+                    <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+                    <Label text="Is Active" />
+                    <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
+                </f:content>
+            </f:SimpleForm>
+        </content>
+        <beginButton>
+            <Button text="OK" press="onBUCreate" />
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" press="onBUCancel" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
