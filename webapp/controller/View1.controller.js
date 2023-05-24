@@ -11,6 +11,7 @@ sap.ui.define([
         "use strict";
 
         return Controller.extend("com.iffco.maintainmasterdata.controller.View1", {
+            // oninit
             onInit: function () {
                 this.getOwnerComponent().getModel().setSizeLimit(100);
                 if (!this._veticalDialog) {
