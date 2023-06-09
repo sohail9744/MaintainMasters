@@ -19,35 +19,54 @@
 				emptySpanL="0"
 				emptySpanM="0"
 				emptySpanS="0"
+				editable="true"
 				singleContainerFullSize="true">
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Customer Type" required="true"/>
-					<Input value="{/customertype}" editable="false"/>
+					<Select enabled="false">
+                        <core:Item key="LOCAL" text="LOCAL" />
+						<core:Item key="EXPORT" text="EXPORT" />
+						<core:Item key="RE-EXPORT" text="RE-EXPORT" />
+                    </Select>
 					<Label text="Class" required="true"/>
-					<Input value="{/class}" editable="false"/>
+					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
+                        <core:Item key="{DOAModel>class}" text="{DOAModel>class}" />
+                    </Select>
 					<Label text="Credit Type" required="true"/>
-					<Input value="{/credittype}" editable="false"/>
+					<!-- <Input value="{/credittype}" editable="false"/> -->
+					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
+                        <core:Item key="{DOAModel>credittype}" text="{DOAModel>credittype}" />
+                    </Select>
                     <Label text="Business Unit" required="true"/>
-					<Input value="{/businessunit}" editable="false"/>
+					<!-- <Input value="{/businessunit}" editable="false"/>					 -->
+					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
+                        <core:Item key="{DOAModel>businessunit}" text="{DOAModel>businessunit}" />
+                    </Select>
 					<Label text="Vertical" required="true"/>
-					<Input value="{/vertical}" editable="false"/>
+					<!-- <Input value="{/vertical}" editable="false"/> -->
+					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
+                        <core:Item key="{DOAModel>vertical}" text="{DOAModel>vertical}" />
+                    </Select>
 					<Label text="Minimum Credit Limit" required="true"/>
-					<Input type="Number" value="{/minimumcreditlimit}" editable="false"/>
+					<Input type="Number" value="{/minimumcreditlimit}" editable="false" maxLength="13"/>
                     <Label text="Maximum Credit Limit" required="true"/>
-					<Input type="Number" value="{/maximumcreditlimit}" editable="false"/>
+					<Input type="Number" value="{/maximumcreditlimit}" editable="false" maxLength="13"/>
                     <core:Title text=""/>
 					<Label text="Last Selected Role" required="true"/>
-					<Input value="{/lastselectedrole}" editable="false"/>
+					<!-- <Input value="{/lastselectedrole}" editable="false"/> -->
+					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
+                        <core:Item key="{DOAModel>lastselectedrole}" text="{DOAModel>lastselectedrole}" />
+                    </Select>
                     <Label text="Is CAD"/>
 					 <RadioButtonGroup columns="3" selectedIndex="{=${/iscad} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />
                         <RadioButton text="No" />
                     </RadioButtonGroup>
 					<Label text="Role Type"/>
-					<Input value="{/roletype}"/>
+					<Input value="{/roletype}" maxLength="40"/>
 					<Label text="Informative Role"/>
-					<Input value="{/informativerole}"/>
+					<Input value="{/informativerole}" maxLength="10"/>
 					<Label text="Is Active"/>
 					 <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

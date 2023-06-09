@@ -23,7 +23,7 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Remarks" required="true"/>
-					<Input value="{/remarks}" editable="false"/>
+					<Input value="{/remarks}" editable="false" maxLength="100"/>
 					<Label text="Is Free Text"/>
 					<RadioButtonGroup columns="3" selectedIndex="{=${/isfreetext} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />
@@ -40,9 +40,9 @@
                         <RadioButton text="No" />
                     </RadioButtonGroup>
 					<Label text="Created By"/>
-					<Input value="{/createdby}"/>
+					<Input value="{/createdby}" maxLength="40"/>
                     <Label text="Modified By"/>
-					<Input value="{/modifiedby}"/>
+					<Input value="{/modifiedby}" maxLength="40"/>
 					<Label text="Created Date"/>
 					<DatePicker value="{/createddate}" placeholder="Enter Date" valueFormat="MM.dd.yyyy" change="handleCreatedDateChange"/>
 					<Label text="Modified Date"/>

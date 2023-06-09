@@ -23,15 +23,15 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Payment Term" required="true"/>
-					<Input value="{/paymentterm}" editable="false"/>
+					<Input value="{/paymentterm}" editable="false" maxLength="40"/>
 					<Label text="Business Name" required="true"/>
-					<Input value="{/businessname}" editable="false"/>
+					<Input value="{/businessname}" editable="false" maxLength="40"/>
 					<Label text="Vertical" required="true"/>
-					<Input value="{/vertical}" editable="false"/>
+					<Input value="{/vertical}" editable="false" maxLength="40"/>
                     <Label text="Class" required="true"/>
-					<Input value="{/class}" editable="false"/>
+					<Input value="{/class}" editable="false" maxLength="10"/>
 					<Label text="Credit Days"/>
-					<Input value="{/creditdays}"/>
+					<Input value="{/creditdays}" maxLength="10"/>
 				</f:content>
 			</f:SimpleForm>
 		</content>

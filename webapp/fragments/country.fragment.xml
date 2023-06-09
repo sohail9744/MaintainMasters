@@ -23,11 +23,11 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Country" required="true"/>
-					<Input value="{/country}" editable="false"/>
+					<Input value="{/country}" editable="false" maxLength="50"/>
 					<Label text="Code"/>
-					<Input value="{/code}"/>
+					<Input value="{/code}" maxLength="10"/>
 					<Label text="Rating"/>
-					<Input value="{/rating}"/>
+					<Input value="{/rating}" maxLength="100"/>
 					<Label text="Is Active"/>
 					 <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

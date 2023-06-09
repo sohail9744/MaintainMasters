@@ -1,14 +1,13 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
     <Dialog contentWidth="40%" title="Add New Bank Master">
         <content>
-        <!-- sf -->
-            <f:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="true">
+            <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="true">
                 <f:content>
                     <core:Title text="" />
                     <Label text="Bank" required="true"/>
-                    <Input value="{/bank}" editable="false"/>
+                    <Input value="{/bank}" editable="false" maxLength="70"/>
                     <Label text="Country" />
-                    <Input value="{/country}" />
+                    <Input value="{/country}" maxLength="40"/>
                     <Label text="Is Active" />
                     <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

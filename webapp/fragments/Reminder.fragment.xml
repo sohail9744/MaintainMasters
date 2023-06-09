@@ -1,21 +1,33 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
-    <Dialog contentWidth="80%" title="Add New Reminder">
+    <Dialog contentWidth="40%" title="Add New Reminder">
         <content>
-            <f:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false">
+            <f:SimpleForm editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false">
                 <f:content>
                     <core:Title text="" />
                     <Label text="Title" required="true"/>
-                    <Input value="{/title}" editable="false"/>
+                    <Input value="{/title}" editable="false" maxLength="40"/>
                      <Label text="Days No" />
-                    <Input value="{/daysno}" />
+                    <Input value="{/daysno}" maxLength="10"/>
                     <Label text="To Roles" />
-                    <Input value="{/toroles}" />
+                    <!-- <Input value="{/toroles}" /> -->
+                    <Select items="{path: 'ReminderModel>/',templateShareable: true}">
+                        <core:Item key="{ReminderModel>toroles}" text="{ReminderModel>toroles}" />
+                    </Select>
                     <Label text="CC Roles" />
-                    <Input value="{/ccroles}" />
+                    <!-- <Input value="{/ccroles}" /> -->
+                    <Select items="{path: 'ReminderModel>/',templateShareable: true}">
+                        <core:Item key="{ReminderModel>ccroles}" text="{ReminderModel>ccroles}" />
+                    </Select>
                     <Label text="Status" />
-                    <Input value="{/status}" />
+                    <!-- <Input value="{/status}" /> -->
+                    <Select items="{path: 'ReminderModel>/',templateShareable: true}">
+                        <core:Item key="{ReminderModel>status}" text="{ReminderModel>status}" />
+                    </Select>
                     <Label text="Email Template Body" />
-                    <Input value="{/emailtemplatebody}" />
+                    <!-- <Input value="{/emailtemplatebody}" /> -->
+                    <Select items="{path: 'ReminderModel>/',templateShareable: true}">
+                        <core:Item key="{ReminderModel>emailtemplatebody}" text="{ReminderModel>emailtemplatebody}" />
+                    </Select>
                     <Label text="Is Active" />
                     <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

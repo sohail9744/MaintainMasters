@@ -1,0 +1,18 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="myPopover"
+		title="Email Template"
+		class="sapUiContentPadding"
+		placement="Bottom" 
+        contentWidth="30%"
+        contentHeight="100%">
+		<endButton>
+			<Button text="Close" press="handleCloseButton" />
+		</endButton>
+		<content>
+			<Text text="{templateModel>/0/emailtemplatebody}" width="15em" />
+		</content>
+	</Popover>
+</core:FragmentDefinition>

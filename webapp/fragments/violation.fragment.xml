@@ -23,13 +23,31 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Business Unit Name" required="true"/>
-					<Input value="{/businessunitname}"/>
+					<Select enabled="false" items="{path: 'violationModel>/',templateShareable: true}">
+                        <core:Item key="{violationModel>businessunitname}" text="{violationModel>businessunitname}" />
+                    </Select>
 					<Label text="Vertical Name" required="true"/>
-					<Input value="{/verticalname}"/>
+					<Select enabled="false" items="{path: 'violationModel>/',templateShareable: true}">
+                        <core:Item key="{violationModel>verticalname}" text="{violationModel>verticalname}" />
+                    </Select>
 					<Label text="Violation Type Name" required="true"/>
-					<Input value="{/violationtypename}"/>
+					<Select enabled="false" items="{path: 'violationModel>/',templateShareable: true}">
+                        <core:Item key="{violationModel>violationtypename}" text="{violationModel>violationtypename}" />
+                    </Select>
 					<Label text="Role Name"/>
-					<Input value="{/rolename}"/>
+					<!-- <Select items="{path: '/ZDD_VIOLATION',templateShareable: true}">
+                        <core:Item key="{rolename}" text="{rolename}" />
+                    </Select> -->
+					<Select>
+                        <core:Item key="Director Finance" text="Director Finance" />
+						<core:Item key="Head of Finance" text="Head of Finance" />
+						<core:Item key="Finance Approver" text="Finance Approver" />
+						<core:Item key="Supervisory Board" text="Supervisory Board" />
+						<core:Item key="Chief Executive Officer" text="Chief Executive Officer"/>
+						<core:Item key="Managing Director" text="Managing Director"/>
+						<core:Item key="Executive Director" text="Executive Director"/>
+						<core:Item key="Regional Finance" text="Regional Finance"/>
+                    </Select>
 					<Label text="Is Active"/>
 					 <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

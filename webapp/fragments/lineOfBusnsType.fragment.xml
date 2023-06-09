@@ -23,13 +23,19 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Channel Group" required="true"/>
-					<Input value="{/channelgroup}" editable="false"/>
+					<Select enabled="false" items="{path: 'CGModel>/',templateShareable: true}">
+                        <core:Item key="{CGModel>channelgroup}" text="{CGModel>channelgroup}" />
+                    </Select>
 					<Label text="Channel" required="true"/>
-					<Input value="{/channel}" editable="false"/>
+					<Select enabled="false" items="{path: 'ChannelModel>/',templateShareable: true}">
+                        <core:Item key="{ChannelModel>channel}" text="{ChannelModel>channel}" />
+                    </Select>
 					<Label text="Sub Channel" required="true"/>
-					<Input value="{/subchannel}" editable="false"/>
-                    <Label text="Line Of Business Type" required="true"/>
-					<Input value="{/lineofbusinesstype}" editable="false"/>
+					<Select enabled="false" items="{path: 'subChannelModel>/',templateShareable: true}">
+                        <core:Item key="{subChannelModel>subchannel}" text="{subChannelModel>subchannel}" />
+                    </Select>
+					<Label text="Line Of Business Type" required="true"/>
+					<Input value="{/lineofbusinesstype}" editable="false" maxLength="40"/>
 					<Label text="Is Active"/>
 					 <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

@@ -23,7 +23,7 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Legal Status" required="true"/>
-					<Input value="{/Legalstatus}" editable="false"/>
+					<Input value="{/Legalstatus}" editable="false" maxLength="40"/>
                     <Label text="Is Company"/>
 					 <RadioButtonGroup columns="3" selectedIndex="{=${/Iscompany} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

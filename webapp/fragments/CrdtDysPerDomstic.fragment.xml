@@ -23,23 +23,27 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Sr No" required="true"/>
-					<Input type="Number" value="{/srno}" editable="false"/>
+					<Input type="Number" value="{/srno}" editable="false" maxLength="10"/>
 					<Label text="Channel" required="true"/>
-					<Input type="Number" value="{/channel}" editable="false"/>
+					<Input value="{/channel}" editable="false" maxLength="40"/>
 					<Label text="Sub Channel"/>
-					<Input value="{/subchannel}"/>
+					<Input value="{/subchannel}" maxLength="40"/>
                     <Label text="Line Of Business Type"/>
-					<Input value="{/lineofbusinesstype}"/>
+					<Input value="{/lineofbusinesstype}" maxLength="40"/>
 					<Label text="Class Type"/>
-					<Input value="{/classtype}"/>
+					<Input value="{/classtype}" maxLength="10"/>
 					<Label text="Maximum Credit Days"/>
-					<Input value="{/maximumcreditdays}"/>
+					<Input value="{/maximumcreditdays}" maxLength="10"/>
                     <Label text="Business Unit"/>
-					<Input value="{/businessunit}"/>
+					<Select items="{path: 'CDPDModel>/',templateShareable: true}">
+                        <core:Item key="{CDPDModel>businessunit}" text="{CDPDModel>businessunit}" />
+                    </Select>
 					<Label text="Vertical"/>
-					<Input value="{/vertical}"/>
+					<Select items="{path: 'verticalModel>/',templateShareable: true}">
+                        <core:Item key="{verticalModel>vertical}" text="{verticalModel>vertical}" />
+                    </Select>
 					<Label text="DOA Role"/>
-					<Input value="{/doarole}"/>
+					<Input value="{/doarole}" maxLength="40"/>
 					<Label text="Is Proxima"/>
 					 <RadioButtonGroup columns="3" selectedIndex="{=${/isproxima} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

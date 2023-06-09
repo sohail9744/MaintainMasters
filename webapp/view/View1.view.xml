@@ -1,18 +1,16 @@
 <mvc:View controllerName="com.iffco.maintainmasterdata.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:t="sap.ui.table">
     <SplitContainer id="SplitContDemo" initialDetail="detail" initialMaster="master">
         <detailPages>
-        <!-- Git is working -->
            <Page id="detail1" title="Currency" titleAlignment="Center" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
                 <Table id="ruleEngineTableId" items="{/zdd_cr_currency_vh}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
 									growingTriggerText="Load More...">
-									<headerToolbar>
-										<OverflowToolbar style="Clear">
-                            <Title text="Maintain Currency" level="H2" />
-                            <ToolbarSpacer />
-                            <Button text="Add Entry" type="Emphasized" press="handleAddCurrency" />
-                            <!-- <Button text="Edit" type="Emphasized" press="handleEditCurrency" /> -->
-                        </OverflowToolbar>
-									</headerToolbar>
+							    <headerToolbar>
+							        <OverflowToolbar style="Clear">
+                                        <Title text="Maintain Currency" level="H2" />
+                                        <ToolbarSpacer />
+                                        <Button text="Add Entry" type="Emphasized" press="handleAddCurrency" />
+                                    </OverflowToolbar>
+								</headerToolbar>
 									<columns>
 										<Column>
 											<Text text="Currency"/>
@@ -429,7 +427,7 @@
                                                 <Text text="{toroles}"/>
 												<Text text="{ccroles}"/>
                                                 <Text text="{status}"/>
-                                                <Text text="{emailtemplatebody}"/>
+                                                <Button text="Click here" type="Transparent" press="handleEmlTemp"/>
                                                 <Text text="{isactive}"/>
 											</cells>
 										</ColumnListItem>
@@ -551,6 +549,7 @@
 								</Table>
             </Page>
             <Page id="detail11" title="Delegation Trading" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <ScrollContainer height="100%" width="100%" horizontal="true" vertical="true">
                 <Table items="{/ZDD_DELEGATION_TR_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
 									growingTriggerText="Load More...">
 									<headerToolbar>
@@ -564,49 +563,49 @@
                         </OverflowToolbar>
 									</headerToolbar>
 									<columns>
-										<Column>
+										<Column width="6em">
 											<Text text="Customer Type"/>
 										</Column>
-                                        <Column>
+                                        <Column width="6em">
 											<Text text="Credit Limit Type"/>
 										</Column>
-                                        <Column>
+                                        <Column width="6em">
 											<Text text="Class Type"/>
 										</Column>
-                                        <Column>
+                                        <Column width="10em">
 											<Text text="Business Unit"/>
 										</Column>
-                                        <Column>
+                                        <Column width="6em">
 											<Text text="Vertical"/>
 										</Column>
-                                        <Column>
+                                        <Column width="6em">
                                             <Text text="Segment" />
                                         </Column>
-                                         <Column>
+                                         <Column width="6em">
                                             <Text text="Minimum Quantity Limit" />
                                         </Column>
-                                        <Column>
+                                        <Column width="6em">
                                             <Text text="Maximum Quantity Limit" />
                                         </Column>
-                                        <Column>
+                                        <Column width="6em">
                                             <Text text="Minimum Value Limit" />
                                         </Column>
-                                        <Column>
+                                        <Column width="6em">
                                             <Text text="Maximum Value Limit" />
                                         </Column>
-                                        <Column>
+                                        <Column width="6em">
                                             <Text text="Last Selected Role" />
                                         </Column>
-                                        <Column>
+                                        <Column width="6em">
                                             <Text text="Role Type" />
                                         </Column>
-                                        <Column>
+                                        <Column width="6em">
                                             <Text text="Informative Role" />
                                         </Column>
-                                        <Column>
+                                        <Column width="6em">
                                             <Text text="Is Cad" />
                                         </Column>
-                                        <Column>
+                                        <Column width="6em">
                                             <Text text="Is Active" />
                                         </Column>
 									</columns>
@@ -615,6 +614,7 @@
                                             <cells>
                                                 <Text text="{customertype}" />
                                                 <Text text="{creditlimittype}" />
+                                                 <Text text="{classtype}" />
                                                 <Text text="{businessunit}" />
                                                 <Text text="{vertical}" />
                                                 <Text text="{segment}" />
@@ -631,6 +631,7 @@
                                         </ColumnListItem>
 									</items>
 								</Table>
+            </ScrollContainer>
             </Page>
             <Page id="detail12" title="Credit days per Domestic" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
                 <Table items="{/ZDD_CREDIT_DOM_VH}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
@@ -736,7 +737,7 @@
                                                 <Text text="{Iscompany}" />
                                                 <Text text="{Ispartnership}" />
                                                 <Text text="{Isowner}" />
-                                                <Text text="{isactive}" />
+                                                <Text text="{Isactive}" />
                                             </cells>
                                         </ColumnListItem>
 									</items>
@@ -969,6 +970,57 @@
 									</items>
 								</Table>
             </Page>
+            <Page id="detail19" title="Export Remarks" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
+                <Table items="{/ZDD_CM_MASTER}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
+									growingTriggerText="Load More...">
+									<headerToolbar>
+                       <OverflowToolbar>
+                            <content>
+                                <Title text="Maintain Credit Management" level="H2" />
+                                <ToolbarSpacer />
+                                <Button text="Add Entry" type="Emphasized" press="handleAddCreditManag" />
+                                <!-- <Button text="Edit" type="Emphasized" press="handleEditCreditManag" /> -->
+                               </content>
+                        </OverflowToolbar>
+									</headerToolbar>	
+                                         <columns>
+                                            <Column>
+                                                <Text text="Sales Organization" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Distribution Channel" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Division" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Credit Control Area" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Cca Description" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="Credit Segment" />
+                                            </Column>
+                                            <Column>
+                                                <Text text="CS Description" />
+                                            </Column>
+                                        </columns>
+									<items>
+                                        <ColumnListItem type="Navigation" press="handleEditCreditManag">
+                                            <cells>
+                                                <Text text="{salesorganization}"/>
+                                                <Text text="{distribution_channel}"/>
+                                                <Text text="{division}"/>
+                                                <Text text="{credit_control_area}"/>
+                                                <Text text="{cca_description}"/>
+                                                <Text text="{credit_segment}"/>
+                                                <Text text="{cs_description}"/>
+                                            </cells>
+                                        </ColumnListItem>
+									</items>
+								</Table>
+            </Page>
         </detailPages>
         <masterPages>
             <Page id="master" title="Master Data" backgroundDesign="List">
@@ -989,8 +1041,9 @@
                     <StandardListItem title="Line of Business Type" type="Navigation" press=".navigateToLOBT" />
                     <StandardListItem title="Payment Terms" type="Navigation" press=".navigateToPayTerms" />
                     <StandardListItem title="Export Payment Terms" type="Navigation" press=".navigateToExpPayTerms" />
-                <StandardListItem title="Country" type="Navigation" press=".navigateToCountry" />
+                    <StandardListItem title="Country" type="Navigation" press=".navigateToCountry" />
                     <StandardListItem title="Remarks" type="Navigation" press=".navigateToRemarks" />
+                    <StandardListItem title="Credit Management" type="Navigation" press=".navigateToCredtMang" />
                 </List>
             </Page>
         </masterPages>

@@ -17,38 +17,63 @@
 				adjustLabelSpan="true"
 				emptySpanXL="0"
 				emptySpanL="0"
+				editable="true"
 				emptySpanM="0"
 				emptySpanS="0"
 				singleContainerFullSize="true">
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Customer Type" required="true"/>
-					<Input value="{/customertype}" editable="false"/>
+					<Select enabled="false">
+                        <core:Item key="LOCAL" text="LOCAL" />
+						<core:Item key="EXPORT" text="EXPORT" />
+						<core:Item key="RE-EXPORT" text="RE-EXPORT" />
+                    </Select>
                     <Label text="Credit Limit Type" required="true"/>
-					<Input type="Number" value="{/creditlimittype}" editable="false"/>
+					<!-- <Select enabled="false" items="{path: '/ZDD_DELEGATION_TR_VH',templateShareable: true}">
+                        <core:Item key="{creditlimittype}" text="{creditlimittype}" />
+                    </Select> -->
+					<Select enabled="false">
+                        <core:Item key="Secured" text="Secured" />
+						<core:Item key="Unsecured" text="Unsecured" />
+                    </Select>
 					<Label text="Class Type" required="true"/>
-					<Input value="{/classtype}" editable="false"/>
+					<!-- <Select enabled="false" items="{path: '/ZDD_DELEGATION_TR_VH',templateShareable: true}">
+                        <core:Item key="{classtype}" text="{classtype}" />
+                    </Select> -->
+					<Select enabled="false">
+                        <core:Item key="Class A" text="Class A" />
+						<core:Item key="Others" text="Others" />
+                    </Select>
                     <Label text="Business Unit" required="true"/>
-					<Input value="{/businessunit}" editable="false"/>
+					<Select  enabled="false" items="{path: 'DelegationTRModel>/',templateShareable: true}">
+                        <core:Item key="{DelegationTRModel>businessunit}" text="{DelegationTRModel>businessunit}" />
+                    </Select>
 					<Label text="Vertical" required="true"/>
-					<Input value="{/vertical}" editable="false"/>
+					<Select enabled="false" items="{path: 'verticalModel>/',templateShareable: true}">
+                        <core:Item key="{verticalModel>vertical}" text="{verticalModel>vertical}" />
+                    </Select>
                     <Label text="Segment" required="true"/>
-					<Input value="{/segment}" editable="false"/>
-                    <Label text="Minimum Quantity Limit" required="true"/>
-					<Input type="Number" value="{/minimumquantitylimit}" editable="false"/>
+					<Select enabled="false" items="{path: 'DelegationTRModel>/',templateShareable: true}">
+                        <core:Item key="{DelegationTRModel>segment}" text="{DelegationTRModel>segment}" />
+                    </Select>
+					<Label text="Minimum Quantity Limit" required="true"/>
+					<Input type="Number" value="{/minimumquantitylimit}" editable="false" maxLength="10"/>
                     <core:Title text=""/>
 					<Label text="Maximum Quantity Limit" required="true"/>
-					<Input type="Number" value="{/maximumquantitylimit}" editable="false"/>
+					<Input type="Number" value="{/maximumquantitylimit}" editable="false" maxLength="10"/>
 					<Label text="Minimum Value Limit" required="true"/>
-					<Input type="Number" value="{/minimumvaluelimit}" editable="false"/>
+					<Input type="Number" value="{/minimumvaluelimit}" editable="false" maxLength="13"/>
                     <Label text="Maximum Value Limit" required="true"/>
-					<Input type="Number" value="{/maximumvaluelimit}" editable="false"/>
+					<Input type="Number" value="{/maximumvaluelimit}" editable="false" maxLength="13"/>
 					<Label text="Last Selected Role" required="true"/>
-					<Input value="{/lastselectedrole}" editable="false"/>
-                    <Label text="Role Type"/>
-					<Input value="{/roletype}"/>
+					<Select enabled="false" items="{path: 'DelegationTRModel>/',templateShareable: true}">
+                        <core:Item key="{DelegationTRModel>lastselectedrole}" text="{DelegationTRModel>lastselectedrole}" />
+                    </Select>
+					<Label text="Role Type"/>
+					<Input value="{/roletype}" maxLength="40"/>
 					<Label text="Informative Role"/>
-					<Input value="{/informativerole}"/>
+					<Input value="{/informativerole}" maxLength="10"/>
 					<Label text="Is CAD"/>
 					 <RadioButtonGroup columns="3" selectedIndex="{=${/iscad} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

@@ -5,76 +5,82 @@
                 <f:content>
                     <core:Title text="" />
                     <Label text="Business Unit" required="true"/>
-                    <Input value="{/Businessunit}" editable="false"/>
+                    <Input value="{/Businessunit}" editable="false" maxLength="70"/>
                     <Label text="BU Code" required="true"/>
-                    <Input value="{/bucode}" editable="false"/>
+                    <Input value="{/bucode}" editable="false" maxLength="40"/>
                     <Label text="vertical" required="true"/>
-                    <Input value="{/vertical}" editable="false"/>
+                    <Input value="{/vertical}" editable="false" maxLength="70"/>
                     <Label text="Child Business Unit" />
-                    <Input value="{/childbusinessunit}" />
+                    <Select items="{path: 'BUModel>/',templateShareable: true}">
+                        <core:Item key="{BUModel>childbusinessunit}" text="{BUModel>childbusinessunit}" />
+                    </Select>
                     <Label text="Currency" />
-                    <Input value="{/currency}" />
+                    <Select items="{path: 'CurrencyModel>/', templateShareable: true}">
+                        <core:Item key="{CurrencyModel>currency}" text="{CurrencyModel>currency}" />
+                    </Select>
                     <Label text="ERP Source" />
-                    <Input value="{/erpsource}" />
+                    <Select items="{path: 'BUModel>/',templateShareable: true}">
+                        <core:Item key="{BUModel>erpsource}" text="{BUModel>erpsource}" />
+                    </Select>
                     <Label text="BU Short Code" />
-                    <Input value="{/bushortcode}" />
+                    <Input value="{/bushortcode}" maxLength="40"/>
                     <Label text="Trading" />
-                    <Input value="{/trading}" />
+                    <Input value="{/trading}" maxLength="3"/>
                     <Label text="Max Credit Limit Applicable" />
-                    <Input value="{/maxcreditlimitapplicable}" />
+                    <Input value="{/maxcreditlimitapplicable}" maxLength="3"/>
                     <core:Title text="" />
                     <Label text="Maximum Credit Days Logic" />
-                    <Input value="{/maximumcreditdayslogic}" />
+                    <Input value="{/maximumcreditdayslogic}" maxLength="70"/>
                     <Label text="CC" />
-                    <Input value="{/cc}" />
+                    <Input value="{/cc}" maxLength="70"/>
                     <Label text="CC Email Id" />
-                    <Input value="{/ccemailid}" />
+                    <Input value="{/ccemailid}" maxLength="70"/>
                     <Label text="FA" />
-                    <Input value="{/fa}" />
+                    <Input value="{/fa}" maxLength="70"/>
                     <Label text="FA Email Id" />
-                    <Input value="{/faemailid}" />
+                    <Input value="{/faemailid}" maxLength="70"/>
                     <Label text="HOF" />
-                    <Input value="{/hof}" />
+                    <Input value="{/hof}" maxLength="70"/>
                     <Label text="HOF Email Id" />
-                    <Input value="{/hofemailid}" />
+                    <Input value="{/hofemailid}" maxLength="70"/>
                     <Label text="GM" />
-                    <Input value="{/gm}" />
+                    <Input value="{/gm}" maxLength="70"/>
                     <core:Title text="" />
                     <Label text="GM Email Id" />
-                    <Input value="{/gmemailid}" />
+                    <Input value="{/gmemailid}" maxLength="70"/>
                     <Label text="CEO" />
-                    <Input value="{/Ceo}" />
+                    <Input value="{/Ceo}" maxLength="70"/>
                     <Label text="CEO Email Id" />
-                    <Input value="{/ceoemailid}" />
+                    <Input value="{/ceoemailid}" maxLength="70"/>
                     <Label text="RF" />
-                    <Input value="{/rf}" />
+                    <Input value="{/rf}" maxLength="70"/>
                     <Label text="RF Email Id" />
-                    <Input value="{/rfemailid}" />
+                    <Input value="{/rfemailid}" maxLength="70"/>
                     <Label text="CFR" />
-                    <Input value="{/cfr}" />
+                    <Input value="{/cfr}" maxLength="70"/>
                     <Label text="CFR Email Id" />
-                    <Input value="{/cfremailid}" />
+                    <Input value="{/cfremailid}" maxLength="70"/>
                     <Label text="DF" />
-                    <Input value="{/df}" />
+                    <Input value="{/df}" maxLength="70"/>
                     <core:Title text="" />
                     <Label text="DF Email Id" />
-                    <Input value="{/dfemailid}" />
+                    <Input value="{/dfemailid}" maxLength="70"/>
                     <Label text="MD" />
-                    <Input value="{/md}" />
+                    <Input value="{/md}" maxLength="70"/>
                     <Label text="MD Email Id" />
-                    <Input value="{/mdemailid}" />
+                    <Input value="{/mdemailid}" maxLength="70"/>
                     <Label text="ED" />
-                    <Input value="{/ed}" />
+                    <Input value="{/ed}" maxLength="70"/>
                     <Label text="ED Email Id" />
-                    <Input value="{/edemailid}" />
+                    <Input value="{/edemailid}" maxLength="70"/>
                     <Label text="SB" />
-                    <Input value="{/sb}" />
+                    <Input value="{/sb}" maxLength="70"/>
                     <Label text="SB Email Id" />
-                    <Input value="{/sbemailid}" />
+                    <Input value="{/sbemailid}" maxLength="70"/>
                     <Label text="MDM" />
-                    <Input value="{/mdm}" />
+                    <Input value="{/mdm}" maxLength="250"/>
                     <Label text="MDM Email Id" />
-                    <Input value="{/mdmemailid}" />
+                    <Input value="{/mdmemailid}" maxLength="250"/>
                     <Label text="Is SND" />
                     <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

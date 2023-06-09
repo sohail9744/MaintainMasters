@@ -5,7 +5,7 @@
                 <f:content>
                     <core:Title text="" />
                     <Label text="Channel Group" required="true"/>
-                    <Input value="{/channelgroup}" editable="false"/>
+                    <Input value="{/channelgroup}" editable="false" maxLength="40"/>
                     <Label text="Is Active" />
                     <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

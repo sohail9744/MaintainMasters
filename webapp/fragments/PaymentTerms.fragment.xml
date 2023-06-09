@@ -23,20 +23,27 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Customer Type" required="true"/>
-					<Input value="{/customertype}" editable="false"/>
+					<Select enabled="false" items="{path: 'PayTermsModel>/',templateShareable: true}">
+                        <core:Item key="{PayTermsModel>customertype}" text="{PayTermsModel>customertype}" />
+                    </Select>
 					<Label text="Credit Type" required="true"/>
-					<Input value="{/credittype}" editable="false"/>
+					<Select enabled="false" items="{path: 'PayTermsModel>/',templateShareable: true}">
+                        <core:Item key="{PayTermsModel>credittype}" text="{PayTermsModel>credittype}" />
+                    </Select>
 					<Label text="Payment Term" required="true"/>
-					<Input value="{/paymentterm}" editable="false"/>
-                    <Label text="Is CAD" required="true"/>
-					 <RadioButtonGroup columns="3" enabled="false" selectedIndex="{=${/iscad} === 'Yes' ? 0 : 1}" width="100%">
+					<Input value="{/paymentterm}" editable="false" maxLength="40"/>
+                    <Label text="Is CAD"/>
+					 <RadioButtonGroup columns="3" selectedIndex="{=${/iscad} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />
                         <RadioButton text="No" />
                     </RadioButtonGroup>
-                    <Label text="Till Sb" required="true"/>
-					<Input value="{/tillsb}" editable="false"/>
+                    <Label text="Till Sb"/>
+					<RadioButtonGroup columns="3" selectedIndex="{=${/tillsb} === 'Yes' ? 0 : 1}" width="100%">
+                        <RadioButton text="Yes" />
+                        <RadioButton text="No" />
+                    </RadioButtonGroup>
 					<Label text="Is Active"/>
-					 <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
+					<RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />
                         <RadioButton text="No" />
                     </RadioButtonGroup>

@@ -1,16 +1,15 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
-    <Dialog contentWidth="80%" title="Add New Vertical">
+    <Dialog contentWidth="40%" title="Add New Vertical">
         <content>
             <f:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false">
                 <f:content>
                     <core:Title text="" />
                     <Label text="Vertical" required="true"/>
-                    <Input type="Number" value="{/vertical}" editable="false"/>
+                    <Input value="{/vertical}" editable="false" maxLength="4"/>
                     <Label text="Vertical Description" />
-                    <Input value="{/verticaldescription}" />
+                    <Input value="{/verticaldescription}" maxLength="50"/>
                     <Label text="MD Approval Required" />
-                    <Input value="{/mdapprovalrequired}" />
-                    
+                    <Input value="{/mdapprovalrequired}" maxLength="3"/>    
                     <Label text="Site Visit Compulsion" />
                     <RadioButtonGroup columns="3" selectedIndex="{=${/sitevisitcompulsion} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />
