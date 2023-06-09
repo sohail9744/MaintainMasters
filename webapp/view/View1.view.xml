@@ -1,6 +1,7 @@
 <mvc:View controllerName="com.iffco.maintainmasterdata.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m" xmlns:t="sap.ui.table">
     <SplitContainer id="SplitContDemo" initialDetail="detail" initialMaster="master">
         <detailPages>
+        <!-- Git is working -->
            <Page id="detail1" title="Currency" titleAlignment="Center" backgroundDesign="Solid" showNavButton="{= !${device>/system/desktop} }" navButtonPress=".onPressDetailBack">
                 <Table id="ruleEngineTableId" items="{/zdd_cr_currency_vh}" fixedLayout="Strict" updateFinished="onUpdateFinished" growing="true" growingThreshold="15"
 									growingTriggerText="Load More...">
