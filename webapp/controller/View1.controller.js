@@ -1204,6 +1204,9 @@ sap.ui.define([
                                 "lastselectedrole": oData.results[i].lastselectedrole
                             });
                         }
+                        arr.unshift({
+                            "class": ""
+                        });
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "DOAModel");
                         this.getView().getModel("DOAModel").updateBindings(true);
@@ -1825,12 +1828,13 @@ sap.ui.define([
                 this.payTermsDlg.close();
             },
             handleAddExpPayTerms: function () {
+                debugger
                 this.expPayTerms = "new";
                 this.ExpPayTermsDlg.setTitle("Add New Export Payment Terms");
                 this.ExpPayTermsDlg.getContent()[0].getContent()[2].setValue().setEditable(true);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[4].setValue().setEditable(true);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[6].setValue().setEditable(true);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[8].setValue().setEditable(true);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[4].setSelectedKey("").setEnabled(true);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[6].setSelectedKey("").setEnabled(true);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[8].setSelectedKey("").setEnabled(true);
                 this.ExpPayTermsDlg.getContent()[0].getContent()[10].setValue();
                 this.ExpPayTermsDlg.open();
             },
@@ -1838,9 +1842,9 @@ sap.ui.define([
                 debugger
                 var oModel = this.getView().getModel();
                 var paymentterm = this.ExpPayTermsDlg.getContent()[0].getContent()[2].getValue();
-                var businessname = this.ExpPayTermsDlg.getContent()[0].getContent()[4].getValue();
-                var vertical = this.ExpPayTermsDlg.getContent()[0].getContent()[6].getValue();
-                var classT = this.ExpPayTermsDlg.getContent()[0].getContent()[8].getValue();
+                var businessname = this.ExpPayTermsDlg.getContent()[0].getContent()[4].getSelectedKey();
+                var vertical = this.ExpPayTermsDlg.getContent()[0].getContent()[6].getSelectedKey();
+                var classT = this.ExpPayTermsDlg.getContent()[0].getContent()[8].getSelectedKey();
                 var creditdays = this.ExpPayTermsDlg.getContent()[0].getContent()[10].getValue();
                 if (paymentterm && businessname && vertical && classT) {
                     var buObj = {
@@ -1853,6 +1857,7 @@ sap.ui.define([
                     var postObj = {
                         "d": buObj
                     };
+                    debugger
                     this.ExpPayTermsDlg.setModel(new sap.ui.model.json.JSONModel(postObj));
                     if (this.expPayTerms == "new") {
                         oModel.create("/zdd_paymentterm_vh", buObj, {
@@ -1870,6 +1875,7 @@ sap.ui.define([
                         this.ExpPayTermsDlg.close();
                     } else {
                         oModel.update("/ZDD_EXP_PYTTERM_VH(paymentterm='" + encodeURIComponent(paymentterm) + "',businessname='" + encodeURIComponent(businessname) + "',vertical='" + encodeURIComponent(vertical) + "',class='" + encodeURIComponent(classT) + "')", buObj, {
+                        // oModel.update("/ZDD_EXP_PYTTERM_VH(paymentterm='" + paymentterm + "',businessname='" + businessname + "',vertical='" + vertical + "',class='" + classT + "')", buObj, {
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
@@ -1897,9 +1903,9 @@ sap.ui.define([
                 var classT = evt.getSource().getBindingContext().getObject().class;
                 var creditdays = evt.getSource().getBindingContext().getObject().creditdays;
                 this.ExpPayTermsDlg.getContent()[0].getContent()[2].setValue(paymentterm).setEditable(false);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[4].setValue(businessname).setEditable(false);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[6].setValue(vertical).setEditable(false);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[8].setValue(classT).setEditable(false);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[4].setSelectedKey(businessname).setEnabled(false);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[6].setSelectedKey(vertical).setEnabled(false);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[8].setSelectedKey(classT).setEnabled(false);
                 this.ExpPayTermsDlg.getContent()[0].getContent()[10].setValue(creditdays);
                 this.ExpPayTermsDlg.open();
             },

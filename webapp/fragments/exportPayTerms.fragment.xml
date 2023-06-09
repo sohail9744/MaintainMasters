@@ -25,11 +25,20 @@
 					<Label text="Payment Term" required="true"/>
 					<Input value="{/paymentterm}" editable="false" maxLength="40"/>
 					<Label text="Business Name" required="true"/>
-					<Input value="{/businessname}" editable="false" maxLength="40"/>
+					<!-- <Input value="{/businessname}" editable="false" maxLength="40"/> -->
+					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
+                    	<core:Item key="{DOAModel>businessunit}" text="{DOAModel>businessunit}" />
+                    </Select>
 					<Label text="Vertical" required="true"/>
-					<Input value="{/vertical}" editable="false" maxLength="40"/>
+					<!-- <Input value="{/vertical}" editable="false" maxLength="40"/> -->
+					<Select enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
+                        <core:Item key="{verticaldescription}" text="{verticaldescription}" />
+                    </Select>
                     <Label text="Class" required="true"/>
-					<Input value="{/class}" editable="false" maxLength="10"/>
+					<!-- <Input value="{/class}" editable="false" maxLength="10"/> -->
+					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
+                        <core:Item key="{DOAModel>class}" text="{DOAModel>class}" />
+                    </Select>
 					<Label text="Credit Days"/>
 					<Input value="{/creditdays}" maxLength="10"/>
 				</f:content>
