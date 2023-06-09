@@ -17,7 +17,6 @@
 				adjustLabelSpan="true"
 				emptySpanXL="0"
 				emptySpanL="0"
-				editable="true"
 				emptySpanM="0"
 				emptySpanS="0"
 				singleContainerFullSize="true">
@@ -46,7 +45,7 @@
 						<core:Item key="Others" text="Others" />
                     </Select>
                     <Label text="Business Unit" required="true"/>
-					<Select  enabled="false" items="{path: 'DelegationTRModel>/',templateShareable: true}">
+					<Select enabled="false" items="{path: 'DelegationTRModel>/',templateShareable: true}">
                         <core:Item key="{DelegationTRModel>businessunit}" text="{DelegationTRModel>businessunit}" />
                     </Select>
 					<Label text="Vertical" required="true"/>

@@ -19,7 +19,6 @@
 				emptySpanL="0"
 				emptySpanM="0"
 				emptySpanS="0"
-				editable="true"
 				singleContainerFullSize="true">
 				<f:content>
 					<core:Title text=""/>

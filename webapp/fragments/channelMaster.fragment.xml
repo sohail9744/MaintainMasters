@@ -8,8 +8,8 @@
                     <Input value="{/channel}" editable="false" maxLength="40"/>
                     <Label text="Is Active" />
                     <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
-                        <RadioButton text="Yes" />
-                        <RadioButton text="No" />
+                        <RadioButton text="Yes"/>
+                        <RadioButton text="No"/>
                     </RadioButtonGroup>
                 </f:content>
             </f:SimpleForm>

@@ -127,7 +127,8 @@ sap.ui.define([
                         for (var i = 0; i < oData.results.length; i++) {
                             arr.push({
                                 "country": oData.results[i].country,
-                                "currency": oData.results[i].currency
+                                "currency": oData.results[i].currency,
+                                "abbreviation": oData.results[i].abbreviation
                             });
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
@@ -243,6 +244,8 @@ sap.ui.define([
                                 "vertical": oData.results[j].vertical
                             });
                         }
+                        var jData = {"vertical":""};
+                        arr.unshift(jData);
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "verticalModel");
                         this.getView().getModel("verticalModel").updateBindings(true);
@@ -261,6 +264,8 @@ sap.ui.define([
                                 "businessunit": oData.results[j].businessunit
                             });
                         }
+                        var jData = {"businessunit":""};
+                        arr.unshift(jData);
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "CDPDModel");
                         this.getView().getModel("CDPDModel").updateBindings(true);
@@ -280,6 +285,8 @@ sap.ui.define([
                                 "credittype": oData.results[j].credittype
                             });
                         }
+                        var jData = {"customertype":"", "credittype":""};
+                        arr.unshift(jData);
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "PayTermsModel");
                         this.getView().getModel("PayTermsModel").updateBindings(true);
@@ -643,10 +650,10 @@ sap.ui.define([
                 var oModel = this.getView().getModel();
                 var channel = this.channelMasterDlg.getContent()[0].getContent()[2].getValue();
                 var isactive = this.channelMasterDlg.getContent()[0].getContent()[4].getSelectedButton().getText();
-                if (isactive == "Yes") {
-                    isactive = "1";
+                if (isactive == 'Yes') {
+                    isactive = '0';
                 } else {
-                    isactive = "0";
+                    isactive = '1';
                 }
                 if (channel) {
                     var buObj = {
@@ -714,7 +721,7 @@ sap.ui.define([
             onChannelGCreate: function (oEvent) {
                 var oModel = this.getView().getModel();
                 var channelGrp = this.channelGrpDlg.getContent()[0].getContent()[2].getValue();
-                var isactive = this.channelMasterDlg.getContent()[0].getContent()[4];
+                var isactive = this.channelGrpDlg.getContent()[0].getContent()[4];
                 if (channelGrp && isactive) {
                     var buObj = {
                         "channelgroup": channelGrp,
@@ -774,11 +781,10 @@ sap.ui.define([
             handleAddViolation: function (oEvent) {
                 this.violation = "new";
                 this.violationDlg.setTitle("Add New Violation Master");
-                this.violationDlg.getContent()[0].getContent()[2].setSelectedKey(null).setEnabled(true);
-                this.violationDlg.getContent()[0].getContent()[4].setSelectedKey(null).setEnabled(true);
-                this.violationDlg.getContent()[0].getContent()[6].setSelectedKey(null).setEnabled(true);
-                this.violationDlg.getContent()[0].getContent()[8].setSelectedKey(null);
-                this.violationDlg.getContent()[0].getContent()[10].setSelectedIndex();
+                this.violationDlg.getContent()[0].getContent()[2].setSelectedKey("").setEnabled(true);
+                this.violationDlg.getContent()[0].getContent()[4].setSelectedKey("").setEnabled(true);
+                this.violationDlg.getContent()[0].getContent()[6].setSelectedKey("").setEnabled(true);
+                this.violationDlg.getContent()[0].getContent()[8].setForceSelection(false);
                 this.violationDlg.open();
             },
             handleViolationModel: function () {
@@ -793,6 +799,8 @@ sap.ui.define([
                                 "violationtypename": oData.results[i].violationtypename
                             });
                         }
+                        var jData = {"businessunitname":"","verticalname":"","violationtypename":""};
+                        arr.unshift(jData);
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "violationModel");
                         this.getView().getModel("violationModel").updateBindings(true);
@@ -945,14 +953,10 @@ sap.ui.define([
                 this.reminderDlg.setTitle("Add New Reminder Master");
                 this.reminderDlg.getContent()[0].getContent()[2].setValue().setEditable(true);
                 this.reminderDlg.getContent()[0].getContent()[4].setValue();
-                // this.reminderDlg.getContent()[0].getContent()[6].setSelectedKey("");
-                // this.reminderDlg.getContent()[0].getContent()[8].setSelectedKey(undefined);
-                // this.reminderDlg.getContent()[0].getContent()[10].setSelectedKey(null);
-                // this.reminderDlg.getContent()[0].getContent()[12].setSelectedKey(null);
-                this.reminderDlg.getContent()[0].getContent()[6].setForceSelection(false);
-                this.reminderDlg.getContent()[0].getContent()[8].setForceSelection(false);
-                this.reminderDlg.getContent()[0].getContent()[10].setForceSelection(false);
-                this.reminderDlg.getContent()[0].getContent()[12].setForceSelection(false);
+                this.reminderDlg.getContent()[0].getContent()[6].setSelectedKey("");
+                this.reminderDlg.getContent()[0].getContent()[8].setSelectedKey("");
+                this.reminderDlg.getContent()[0].getContent()[10].setSelectedKey("");
+                this.reminderDlg.getContent()[0].getContent()[12].setSelectedKey("");
                 this.violationDlg.getContent()[0].getContent()[10].setSelectedIndex();
                 this.reminderDlg.open();
             },
@@ -969,6 +973,8 @@ sap.ui.define([
                                 "emailtemplatebody": oData.results[i].emailtemplatebody
                             });
                         }
+                        var jData = {"toroles":"", "ccroles":"", "status":"", "emailtemplatebody":""};
+                        arr.unshift(jData);
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "ReminderModel");
                         this.getView().getModel("ReminderModel").updateBindings(true);
@@ -1175,17 +1181,17 @@ sap.ui.define([
             handleAddDOAMaster: function (oEvent) {
                 this.DOA = "new";
                 this.DOAMasterDlg.setTitle("Add New DOA Master");
-                this.DOAMasterDlg.getContent()[0].getContent()[2].setSelectedKey(null).setEnabled(true);
-                this.DOAMasterDlg.getContent()[0].getContent()[4].setSelectedKey(null).setEnabled(true);
-                this.DOAMasterDlg.getContent()[0].getContent()[6].setSelectedKey(null).setEnabled(true);
-                this.DOAMasterDlg.getContent()[0].getContent()[8].setSelectedKey(null).setEnabled(true);
-                this.DOAMasterDlg.getContent()[0].getContent()[10].setSelectedKey(null).setEnabled(true);
+                this.DOAMasterDlg.getContent()[0].getContent()[2].setSelectedKey("").setEditable(true);
+                this.DOAMasterDlg.getContent()[0].getContent()[4].setSelectedKey("").setEditable(true);
+                this.DOAMasterDlg.getContent()[0].getContent()[6].setSelectedKey("").setEditable(true);
+                this.DOAMasterDlg.getContent()[0].getContent()[8].setSelectedKey("").setEditable(true);
+                this.DOAMasterDlg.getContent()[0].getContent()[10].setValue().setEditable(true);
                 this.DOAMasterDlg.getContent()[0].getContent()[12].setValue().setEditable(true);
                 this.DOAMasterDlg.getContent()[0].getContent()[14].setValue().setEditable(true);
-                this.DOAMasterDlg.getContent()[0].getContent()[17].setSelectedKey(null).setEnabled(true);
+                this.DOAMasterDlg.getContent()[0].getContent()[17].setValue().setEditable(true);
                 this.DOAMasterDlg.getContent()[0].getContent()[19].setSelectedIndex();
-                this.DOAMasterDlg.getContent()[0].getContent()[21].setValue("");
-                this.DOAMasterDlg.getContent()[0].getContent()[23].setValue("");
+                this.DOAMasterDlg.getContent()[0].getContent()[21].setValue();
+                this.DOAMasterDlg.getContent()[0].getContent()[23].setValue();
                 this.DOAMasterDlg.getContent()[0].getContent()[25].setSelectedIndex();
                 this.DOAMasterDlg.open();
             },
@@ -1204,9 +1210,6 @@ sap.ui.define([
                                 "lastselectedrole": oData.results[i].lastselectedrole
                             });
                         }
-                        arr.unshift({
-                            "class": ""
-                        });
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "DOAModel");
                         this.getView().getModel("DOAModel").updateBindings(true);
@@ -1252,7 +1255,7 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("DOA Master added successfully");
-                                this.handleDOAModel();
+
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
@@ -1266,7 +1269,7 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
-                                this.handleDOAModel();
+
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
@@ -1318,28 +1321,24 @@ sap.ui.define([
             },
             handleAddDelegationTR: function () {
                 this.Dtrading = "new";
-                // debugger
-                // this.getView().getModel("DelegationTRModel").getData().unshift({
-                //     businessunit: "blankKey",
-                // })
                 this.DelegationTrDlg.setTitle("Add New Delegation Trading");
-                this.DelegationTrDlg.getContent()[0].getContent()[2].setForceSelection(false).setEnabled(true);
-                this.DelegationTrDlg.getContent()[0].getContent()[4].setForceSelection(false).setEnabled(true);
-                this.DelegationTrDlg.getContent()[0].getContent()[6].setForceSelection(false).setEnabled(true);
-                this.DelegationTrDlg.getContent()[0].getContent()[8].setEnabled(true).setForceSelection(false);
-                this.DelegationTrDlg.getContent()[0].getContent()[10].setForceSelection(false).setEnabled(true);
-                this.DelegationTrDlg.getContent()[0].getContent()[12].setForceSelection(false).setEnabled(true);
+                this.DelegationTrDlg.getContent()[0].getContent()[2].setSelectedKey(null).setEnabled(true);
+                this.DelegationTrDlg.getContent()[0].getContent()[4].setSelectedKey(null).setEnabled(true);
+                this.DelegationTrDlg.getContent()[0].getContent()[6].setSelectedKey(null).setEnabled(true);
+                this.DelegationTrDlg.getContent()[0].getContent()[8].setSelectedKey(null).setEnabled(true);
+                this.DelegationTrDlg.getContent()[0].getContent()[10].setSelectedKey(null).setEnabled(true);
+                this.DelegationTrDlg.getContent()[0].getContent()[12].setSelectedKey(null).setEnabled(true);
                 this.DelegationTrDlg.getContent()[0].getContent()[14].setValue().setEditable(true);
                 this.DelegationTrDlg.getContent()[0].getContent()[17].setValue().setEditable(true);
                 this.DelegationTrDlg.getContent()[0].getContent()[19].setValue().setEditable(true);
                 this.DelegationTrDlg.getContent()[0].getContent()[21].setValue().setEditable(true);
-                this.DelegationTrDlg.getContent()[0].getContent()[23].setForceSelection(false).setEnabled(true);
+                this.DelegationTrDlg.getContent()[0].getContent()[23].setSelectedKey(null).setEnabled(true);
                 this.DelegationTrDlg.getContent()[0].getContent()[25].setValue();
                 this.DelegationTrDlg.getContent()[0].getContent()[27].setValue();
                 this.DelegationTrDlg.getContent()[0].getContent()[29].setSelectedIndex();
                 this.DelegationTrDlg.getContent()[0].getContent()[31].setSelectedIndex();
                 this.DelegationTrDlg.open();
-            },
+            }, 
             handleDelgTrdngModel: function () {
                 var oModel = this.getOwnerComponent().getModel();
                 oModel.read("/ZDD_DELEGATION_TR_VH", {
@@ -1352,6 +1351,8 @@ sap.ui.define([
                                 "businessunit": oData.results[i].businessunit
                             });
                         }
+                        var jData = {"segment":"", "lastselectedrole":"", "businessunit":""};
+                        arr.unshift(jData);
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "DelegationTRModel");
                         this.getView().getModel("DelegationTRModel").updateBindings(true);
@@ -1412,7 +1413,6 @@ sap.ui.define([
                         this.DelegationTrDlg.getModel().updateBindings(true);
                         this.DelegationTrDlg.close();
                     } else {
-                        debugger
                         oModel.update("/ZDD_DELEGATION_TR_VH(customertype='" + encodeURIComponent(customerType) + "',creditlimittype='" + encodeURIComponent(CreditType) + "',classtype='" + encodeURIComponent(classTyp) + "',businessunit='" + encodeURIComponent(BusinessUnit) + "',vertical='" + encodeURIComponent(Vertical) + "',segment='" + encodeURIComponent(segment) + "',minimumquantitylimit=" + minimumQtylimit + ",maximumquantitylimit=" + maximumQtylimit + ",minimumvaluelimit=" + minimumcValuelimit + ",maximumvaluelimit=" + maximumValuelimit + ")", buObj, {
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
@@ -1482,8 +1482,8 @@ sap.ui.define([
                 this.CDPDDialog.getContent()[0].getContent()[10].setValue();
                 this.CDPDDialog.getContent()[0].getContent()[12].setValue();
                 this.CDPDDialog.getContent()[0].getContent()[14].setValue();
-                this.CDPDDialog.getContent()[0].getContent()[16].setSelectedKey(null);
-                this.CDPDDialog.getContent()[0].getContent()[18].setSelectedKey(null);
+                this.CDPDDialog.getContent()[0].getContent()[16].setSelectedKey("");
+                this.CDPDDialog.getContent()[0].getContent()[18].setSelectedKey("");
                 this.CDPDDialog.getContent()[0].getContent()[20].setSelectedIndex();
                 this.CDPDDialog.getContent()[0].getContent()[22].setSelectedIndex();
                 this.CDPDDialog.open();
@@ -1741,8 +1741,8 @@ sap.ui.define([
             handleAddPayTerms: function () {
                 this.payTerms = "new";
                 this.payTermsDlg.setTitle("Add New Payment Terms");
-                this.payTermsDlg.getContent()[0].getContent()[2].setSelectedKey(null).setEnabled(true);
-                this.payTermsDlg.getContent()[0].getContent()[4].setSelectedKey(null).setEnabled(true);
+                this.payTermsDlg.getContent()[0].getContent()[2].setSelectedKey("").setEnabled(true);
+                this.payTermsDlg.getContent()[0].getContent()[4].setSelectedKey("").setEnabled(true);
                 this.payTermsDlg.getContent()[0].getContent()[6].setValue().setEditable(true);
                 this.payTermsDlg.getContent()[0].getContent()[8].setSelectedIndex();
                 this.payTermsDlg.getContent()[0].getContent()[10].setSelectedIndex();
@@ -1828,23 +1828,21 @@ sap.ui.define([
                 this.payTermsDlg.close();
             },
             handleAddExpPayTerms: function () {
-                debugger
                 this.expPayTerms = "new";
                 this.ExpPayTermsDlg.setTitle("Add New Export Payment Terms");
                 this.ExpPayTermsDlg.getContent()[0].getContent()[2].setValue().setEditable(true);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[4].setSelectedKey("").setEnabled(true);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[6].setSelectedKey("").setEnabled(true);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[8].setSelectedKey("").setEnabled(true);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[4].setValue().setEditable(true);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[6].setValue().setEditable(true);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[8].setValue().setEditable(true);
                 this.ExpPayTermsDlg.getContent()[0].getContent()[10].setValue();
                 this.ExpPayTermsDlg.open();
             },
             onExpPayTermCreate: function () {
-                debugger
                 var oModel = this.getView().getModel();
                 var paymentterm = this.ExpPayTermsDlg.getContent()[0].getContent()[2].getValue();
-                var businessname = this.ExpPayTermsDlg.getContent()[0].getContent()[4].getSelectedKey();
-                var vertical = this.ExpPayTermsDlg.getContent()[0].getContent()[6].getSelectedKey();
-                var classT = this.ExpPayTermsDlg.getContent()[0].getContent()[8].getSelectedKey();
+                var businessname = this.ExpPayTermsDlg.getContent()[0].getContent()[4].getValue();
+                var vertical = this.ExpPayTermsDlg.getContent()[0].getContent()[6].getValue();
+                var classT = this.ExpPayTermsDlg.getContent()[0].getContent()[8].getValue();
                 var creditdays = this.ExpPayTermsDlg.getContent()[0].getContent()[10].getValue();
                 if (paymentterm && businessname && vertical && classT) {
                     var buObj = {
@@ -1857,7 +1855,6 @@ sap.ui.define([
                     var postObj = {
                         "d": buObj
                     };
-                    debugger
                     this.ExpPayTermsDlg.setModel(new sap.ui.model.json.JSONModel(postObj));
                     if (this.expPayTerms == "new") {
                         oModel.create("/zdd_paymentterm_vh", buObj, {
@@ -1875,7 +1872,6 @@ sap.ui.define([
                         this.ExpPayTermsDlg.close();
                     } else {
                         oModel.update("/ZDD_EXP_PYTTERM_VH(paymentterm='" + encodeURIComponent(paymentterm) + "',businessname='" + encodeURIComponent(businessname) + "',vertical='" + encodeURIComponent(vertical) + "',class='" + encodeURIComponent(classT) + "')", buObj, {
-                        // oModel.update("/ZDD_EXP_PYTTERM_VH(paymentterm='" + paymentterm + "',businessname='" + businessname + "',vertical='" + vertical + "',class='" + classT + "')", buObj, {
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
@@ -1903,9 +1899,9 @@ sap.ui.define([
                 var classT = evt.getSource().getBindingContext().getObject().class;
                 var creditdays = evt.getSource().getBindingContext().getObject().creditdays;
                 this.ExpPayTermsDlg.getContent()[0].getContent()[2].setValue(paymentterm).setEditable(false);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[4].setSelectedKey(businessname).setEnabled(false);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[6].setSelectedKey(vertical).setEnabled(false);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[8].setSelectedKey(classT).setEnabled(false);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[4].setValue(businessname).setEditable(false);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[6].setValue(vertical).setEditable(false);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[8].setValue(classT).setEditable(false);
                 this.ExpPayTermsDlg.getContent()[0].getContent()[10].setValue(creditdays);
                 this.ExpPayTermsDlg.open();
             },
