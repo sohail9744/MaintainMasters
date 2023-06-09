@@ -16,7 +16,7 @@
                     </Select>
                     <Label text="Currency" />
                     <Select items="{path: 'CurrencyModel>/', templateShareable: true}">
-                        <core:Item key="{CurrencyModel>currency}" text="{CurrencyModel>currency}" />
+                        <core:Item key="{CurrencyModel>abbreviation}" text="{CurrencyModel>abbreviation}" />
                     </Select>
                     <Label text="ERP Source" />
                     <Select items="{path: 'BUModel>/',templateShareable: true}">

@@ -38,7 +38,7 @@
 					<!-- <Select items="{path: '/ZDD_VIOLATION',templateShareable: true}">
                         <core:Item key="{rolename}" text="{rolename}" />
                     </Select> -->
-					<Select>
+					<Select forceSelection="true">
                         <core:Item key="Director Finance" text="Director Finance" />
 						<core:Item key="Head of Finance" text="Head of Finance" />
 						<core:Item key="Finance Approver" text="Finance Approver" />
