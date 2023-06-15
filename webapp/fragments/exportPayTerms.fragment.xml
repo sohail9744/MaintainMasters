@@ -16,6 +16,7 @@
 				labelSpanS="4"
 				adjustLabelSpan="true"
 				emptySpanXL="0"
+				editable="true"
 				emptySpanL="0"
 				emptySpanM="0"
 				emptySpanS="0"
@@ -26,8 +27,8 @@
 					<Input value="{/paymentterm}" editable="false" maxLength="40"/>
 					<Label text="Business Name" required="true"/>
 					<!-- <Input value="{/businessname}" editable="false" maxLength="40"/> -->
-					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
-                    	<core:Item key="{DOAModel>businessunit}" text="{DOAModel>businessunit}" />
+					<Select enabled="false" items="{path: '/ZDD_BU_VH',templateShareable: true}">
+                    	<core:Item key="{businessunit}" text="{businessunit}" />
                     </Select>
 					<Label text="Vertical" required="true"/>
 					<!-- <Input value="{/vertical}" editable="false" maxLength="40"/> -->

@@ -23,16 +23,22 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Business Unit Name" required="true"/>
-					<Select enabled="false" items="{path: 'violationModel>/',templateShareable: true}">
-                        <core:Item key="{violationModel>businessunitname}" text="{violationModel>businessunitname}" />
+					<Select enabled="false" items="{path: '/ZDD_BU_VH',templateShareable: true}">
+                        <core:Item key="{businessunit}" text="{businessunit}" />
                     </Select>
 					<Label text="Vertical Name" required="true"/>
-					<Select enabled="false" items="{path: 'violationModel>/',templateShareable: true}">
+					<!-- <Select enabled="false" items="{path: 'violationModel>/',templateShareable: true}">
                         <core:Item key="{violationModel>verticalname}" text="{violationModel>verticalname}" />
+                    </Select> -->
+					<Select enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
+                        <core:Item key="{vertical}" text="{verticaldescription}" />
                     </Select>
 					<Label text="Violation Type Name" required="true"/>
-					<Select enabled="false" items="{path: 'violationModel>/',templateShareable: true}">
+					<!-- <Select enabled="false" items="{path: 'violationModel>/',templateShareable: true}">
                         <core:Item key="{violationModel>violationtypename}" text="{violationModel>violationtypename}" />
+                    </Select> -->
+					<Select enabled="false" items="{path: '/ZDD_VIOLATIONTYPE_VH',templateShareable: true}">
+                        <core:Item key="{Violationtypename}" text="{Violationtypename}" />
                     </Select>
 					<Label text="Role Name"/>
 					<!-- <Select items="{path: '/ZDD_VIOLATION',templateShareable: true}">

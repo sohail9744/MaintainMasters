@@ -18,24 +18,25 @@
 				emptySpanXL="0"
 				emptySpanL="0"
 				emptySpanM="0"
+				editable="true"
 				emptySpanS="0"
 				singleContainerFullSize="true">
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Channel Group" required="true"/>
-					<Select enabled="false" items="{path: 'CGModel>/',templateShareable: true}">
-                        <core:Item key="{CGModel>channelgroup}" text="{CGModel>channelgroup}" />
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_ChannleGroup_VH',templateShareable: true}">
+                        <core:Item key="{channelgroup}" text="{channelgroup}" />
                     </Select>
 					<Label text="Channel" required="true"/>
-					<Select enabled="false" items="{path: 'ChannelModel>/',templateShareable: true}">
-                        <core:Item key="{ChannelModel>channel}" text="{ChannelModel>channel}" />
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_Channel_VH',templateShareable: true}">
+                        <core:Item key="{channel}" text="{channel}" />
                     </Select>
 					<Label text="Sub Channel" required="true"/>
-					<Select enabled="false" items="{path: 'subChannelModel>/',templateShareable: true}">
-                        <core:Item key="{subChannelModel>subchannel}" text="{subChannelModel>subchannel}" />
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_SubChannel_VH',templateShareable: true}">
+                        <core:Item key="{subchannel}" text="{subchannel}" />
                     </Select>
 					<Label text="Line Of Business Type" required="true"/>
-					<Input value="{/lineofbusinesstype}" editable="false" maxLength="40"/>
+					<Input forceSelection="false" value="{/lineofbusinesstype}" editable="false" maxLength="40"/>
 					<Label text="Is Active"/>
 					 <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

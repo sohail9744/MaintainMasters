@@ -18,17 +18,18 @@
 				emptySpanXL="0"
 				emptySpanL="0"
 				emptySpanM="0"
+				editable="true"
 				emptySpanS="0"
 				singleContainerFullSize="true">
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Customer Type" required="true"/>
-					<Select enabled="false" items="{path: 'PayTermsModel>/',templateShareable: true}">
-                        <core:Item key="{PayTermsModel>customertype}" text="{PayTermsModel>customertype}" />
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_CUSTOMERTYPE_VH',templateShareable: true}">
+                        <core:Item key="{customertype}" text="{customertype}" />
                     </Select>
 					<Label text="Credit Type" required="true"/>
-					<Select enabled="false" items="{path: 'PayTermsModel>/',templateShareable: true}">
-                        <core:Item key="{PayTermsModel>credittype}" text="{PayTermsModel>credittype}" />
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_CREDITTYPE_VH',templateShareable: true}">
+                        <core:Item key="{credittype}" text="{credittype}" />
                     </Select>
 					<Label text="Payment Term" required="true"/>
 					<Input value="{/paymentterm}" editable="false" maxLength="40"/>

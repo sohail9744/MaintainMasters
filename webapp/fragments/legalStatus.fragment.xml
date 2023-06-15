@@ -16,6 +16,7 @@
 				labelSpanS="4"
 				adjustLabelSpan="true"
 				emptySpanXL="0"
+				editable="true"
 				emptySpanL="0"
 				emptySpanM="0"
 				emptySpanS="0"

@@ -11,6 +11,7 @@
 			<f:SimpleForm
 				layout="ResponsiveGridLayout"
 				labelSpanXL="4"
+				editable="true"
 				labelSpanL="4"
 				labelSpanM="4"
 				labelSpanS="4"

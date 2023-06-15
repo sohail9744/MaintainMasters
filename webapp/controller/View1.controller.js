@@ -125,14 +125,14 @@ sap.ui.define([
                     success: function (oData, oResponse) {
                         var arr = [];
                         for (var i = 0; i < oData.results.length; i++) {
-                            arr.push({
+                                arr.push({
                                 "country": oData.results[i].country,
                                 "currency": oData.results[i].currency
                             });
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "CurrencyModel");
-                        this.getView().getModel("CurrencyModel").updateBindings(true);
+                        this.getView().getModel("CurrencyModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -171,7 +171,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.currencyDlg.getModel().updateBindings(true);
+                        this.currencyDlg.getModel().updateBindings();
                         this.currencyDlg.close();
                     } else {
                         this.currencyDlg.setModel(new sap.ui.model.json.JSONModel(postObj));
@@ -186,7 +186,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.currencyDlg.getModel().updateBindings(true);
+                        this.currencyDlg.getModel().updateBindings();
                         this.currencyDlg.close();
                     }
                 } else {
@@ -215,7 +215,7 @@ sap.ui.define([
             },
             handleBUModel: function () {
                 var oModel = this.getOwnerComponent().getModel();
-                oModel.read("/ZDD_BusinessUnit_VH", {
+                oModel.read("/ZDD_CHILD_BU_VH", {
                     success: function (oData, oResponse) {
                         var arr = [];
                         for (var i = 0; i < oData.results.length; i++) {
@@ -227,7 +227,7 @@ sap.ui.define([
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "BUModel");
-                        this.getView().getModel("BUModel").updateBindings(true);
+                        this.getView().getModel("BUModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -245,7 +245,7 @@ sap.ui.define([
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "verticalModel");
-                        this.getView().getModel("verticalModel").updateBindings(true);
+                        this.getView().getModel("verticalModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -263,7 +263,7 @@ sap.ui.define([
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "CDPDModel");
-                        this.getView().getModel("CDPDModel").updateBindings(true);
+                        this.getView().getModel("CDPDModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -282,7 +282,7 @@ sap.ui.define([
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "PayTermsModel");
-                        this.getView().getModel("PayTermsModel").updateBindings(true);
+                        this.getView().getModel("PayTermsModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -300,7 +300,7 @@ sap.ui.define([
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "CGModel");
-                        this.getView().getModel("CGModel").updateBindings(true);
+                        this.getView().getModel("CGModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -318,7 +318,7 @@ sap.ui.define([
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "ChannelModel");
-                        this.getView().getModel("ChannelModel").updateBindings(true);
+                        this.getView().getModel("ChannelModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -336,7 +336,7 @@ sap.ui.define([
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "subChannelModel");
-                        this.getView().getModel("subChannelModel").updateBindings(true);
+                        this.getView().getModel("subChannelModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -449,7 +449,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.BUDialog.getModel().updateBindings(true);
+                        this.BUDialog.getModel().updateBindings();
                         this.BUDialog.close();
                     } else {
                         oModel.update("/ZDD_BusinessUnit_VH(Businessunit='" + encodeURIComponent(BusinessUnit) + "',bucode='" + encodeURIComponent(BuCode) + "',vertical='" + encodeURIComponent(vertical) + "')", buObj, {
@@ -464,7 +464,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.BUDialog.getModel().updateBindings(true);
+                        this.BUDialog.getModel().updateBindings();
                         this.BUDialog.close();
                     }
                 } else {
@@ -592,7 +592,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.bankMasterDlg.getModel().updateBindings(true);
+                        this.bankMasterDlg.getModel().updateBindings();
                         this.bankMasterDlg.close();
                     } else {
                         oModel.update("/ZDD_BANK_VH('" + encodeURIComponent(bank) + "')", buObj, {
@@ -606,7 +606,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.bankMasterDlg.getModel().updateBindings(true);
+                        this.bankMasterDlg.getModel().updateBindings();
                         this.bankMasterDlg.close();
                     }
                 } else {
@@ -669,7 +669,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.channelMasterDlg.getModel().updateBindings(true);
+                        this.channelMasterDlg.getModel().updateBindings();
                         this.channelMasterDlg.close();
                     } else {
                         oModel.update("/ZDD_Channel_VH('" + encodeURIComponent(channel) + "')", buObj, {
@@ -683,7 +683,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.channelMasterDlg.getModel().updateBindings(true);
+                        this.channelMasterDlg.getModel().updateBindings();
                         this.channelMasterDlg.close();
                     }
                 } else {
@@ -736,7 +736,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.channelGrpDlg.getModel().updateBindings(true);
+                        this.channelGrpDlg.getModel().updateBindings();
                         this.channelGrpDlg.close();
                     } else {
                         oModel.update("/ZDD_ChannleGroup_VH('" + encodeURIComponent(channelGrp) + "')", buObj, {
@@ -750,7 +750,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.channelGrpDlg.getModel().updateBindings(true);
+                        this.channelGrpDlg.getModel().updateBindings();
                         this.channelGrpDlg.close();
                     }
                 } else {
@@ -795,7 +795,7 @@ sap.ui.define([
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "violationModel");
-                        this.getView().getModel("violationModel").updateBindings(true);
+                        this.getView().getModel("violationModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -833,7 +833,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.violationDlg.getModel().updateBindings(true);
+                        this.violationDlg.getModel().updateBindings();
                         this.violationDlg.close();
                     } else {
                         oModel.update("/ZDD_VIOLATION(businessunitname='" + encodeURIComponent(businessUnitName) + "',verticalname='" + encodeURIComponent(verticalForm) + "',violationtypename='" + encodeURIComponent(violationtypename) + "')", buObj, {
@@ -847,7 +847,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.violationDlg.getModel().updateBindings(true);
+                        this.violationDlg.getModel().updateBindings();
                         this.violationDlg.close();
                     }
                 } else {
@@ -905,7 +905,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.subChannelDlg.getModel().updateBindings(true);
+                        this.subChannelDlg.getModel().updateBindings();
                         this.subChannelDlg.close();
                     } else {
                         oModel.update("/ZDD_SubChannel_VH('" + encodeURIComponent(subChannel) + "')", buObj, {
@@ -919,7 +919,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.subChannelDlg.getModel().updateBindings(true);
+                        this.subChannelDlg.getModel().updateBindings();
                         this.subChannelDlg.close();
                     }
                 } else {
@@ -971,7 +971,7 @@ sap.ui.define([
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "ReminderModel");
-                        this.getView().getModel("ReminderModel").updateBindings(true);
+                        this.getView().getModel("ReminderModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -1009,7 +1009,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.reminderDlg.getModel().updateBindings(true);
+                        this.reminderDlg.getModel().updateBindings();
                         this.reminderDlg.close();
                     } else {
                         oModel.update("/ZDD_REMINDER('" + encodeURIComponent(Title) + "')", buObj, {
@@ -1023,7 +1023,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.reminderDlg.getModel().updateBindings(true);
+                        this.reminderDlg.getModel().updateBindings();
                         this.reminderDlg.close();
                     }
                 } else {
@@ -1069,7 +1069,7 @@ sap.ui.define([
                         }
                         var templateSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(templateSetModel, "templateModel");
-                        this.getView().getModel("templateModel").updateBindings(true);
+                        this.getView().getModel("templateModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -1127,7 +1127,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.verticalDlg.getModel().updateBindings(true);
+                        this.verticalDlg.getModel().updateBindings();
                         this.verticalDlg.close();
                     } else {
                         oModel.update("/ZDD_Vertical_VH('" + encodeURIComponent(vertical) + "')", buObj, {
@@ -1141,7 +1141,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.verticalDlg.getModel().updateBindings(true);
+                        this.verticalDlg.getModel().updateBindings();
                         this.verticalDlg.close();
                     }
                 } else {
@@ -1209,7 +1209,7 @@ sap.ui.define([
                         });
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "DOAModel");
-                        this.getView().getModel("DOAModel").updateBindings(true);
+                        this.getView().getModel("DOAModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -1259,7 +1259,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.DOAMasterDlg.getModel().updateBindings(true);
+                        this.DOAMasterDlg.getModel().updateBindings();
                         this.DOAMasterDlg.close();
                     } else {
                         oModel.update("/ZDD_DELEGATION_VH(customertype='" + encodeURIComponent(customerType) + "',class='" + encodeURIComponent(classTyp) + "',credittype='" + encodeURIComponent(CreditType) + "',businessunit='" + encodeURIComponent(BusinessUnit) + "',vertical='" + encodeURIComponent(Vertical) + "',minimumcreditlimit=" + minimumcreditlimit + ",maximumcreditlimit=" + maximumcreditlimit + ",lastselectedrole='" + encodeURIComponent(lastselectedrole) + "')", buObj, {
@@ -1273,7 +1273,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.DOAMasterDlg.getModel().updateBindings(true);
+                        this.DOAMasterDlg.getModel().updateBindings();
                         this.DOAMasterDlg.close();
                     }
                 } else {
@@ -1354,7 +1354,7 @@ sap.ui.define([
                         }
                         var headerSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(headerSetModel, "DelegationTRModel");
-                        this.getView().getModel("DelegationTRModel").updateBindings(true);
+                        this.getView().getModel("DelegationTRModel").updateBindings();
 
                     }.bind(this),
                     error: function (oError) {
@@ -1402,6 +1402,7 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Delegation Trading added successfully");
+                                this.handleDelgTrdngModel();
 
                             }.bind(this),
                             error: function (oError) {
@@ -1409,7 +1410,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.DelegationTrDlg.getModel().updateBindings(true);
+                        this.handleDelgTrdngModel();
                         this.DelegationTrDlg.close();
                     } else {
                         debugger
@@ -1417,14 +1418,14 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
-
+                                this.handleDelgTrdngModel();
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.DelegationTrDlg.getModel().updateBindings(true);
+                        this.handleDelgTrdngModel();
                         this.DelegationTrDlg.close();
                     }
                 } else {
@@ -1460,7 +1461,7 @@ sap.ui.define([
                 this.DelegationTrDlg.getContent()[0].getContent()[17].setValue(maximumquantitylimit).setEditable(false);
                 this.DelegationTrDlg.getContent()[0].getContent()[19].setValue(minimumvaluelimit).setEditable(false);
                 this.DelegationTrDlg.getContent()[0].getContent()[21].setValue(maximumvaluelimit).setEditable(false);
-                this.DelegationTrDlg.getContent()[0].getContent()[23].setSelectedKey(lastselectedrole);
+                this.DelegationTrDlg.getContent()[0].getContent()[23].setSelectedKey(lastselectedrole).setEnabled(true);
                 this.DelegationTrDlg.getContent()[0].getContent()[25].setValue(roletype);
                 this.DelegationTrDlg.getContent()[0].getContent()[27].setValue(informativerole);
                 var index = (iscad == 'Yes') ? 0 : 1;
@@ -1522,7 +1523,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.CDPDDialog.getModel().updateBindings(true);
+                        this.CDPDDialog.getModel().updateBindings();
                         this.CDPDDialog.close();
                     } else {
                         oModel.update("/ZDD_CREDIT_DOM_VH(srno='" + encodeURIComponent(srno) + "',channel='" + encodeURIComponent(channel) + "')", buObj, {
@@ -1536,7 +1537,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.CDPDDialog.getModel().updateBindings(true);
+                        this.CDPDDialog.getModel().updateBindings();
                         this.CDPDDialog.close();
                     }
                 } else {
@@ -1613,7 +1614,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.legalStatsDlg.getModel().updateBindings(true);
+                        this.legalStatsDlg.getModel().updateBindings();
                         this.legalStatsDlg.close();
                     } else {
                         oModel.update("/ZDD_LEGAL_STATUS_VH('" + encodeURIComponent(legalStatus) + "')", buObj, {
@@ -1627,7 +1628,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.legalStatsDlg.getModel().updateBindings(true);
+                        this.legalStatsDlg.getModel().updateBindings();
                         this.legalStatsDlg.close();
                     }
                 } else {
@@ -1697,7 +1698,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.lineOfBsnsDlg.getModel().updateBindings(true);
+                        this.lineOfBsnsDlg.getModel().updateBindings();
                         this.lineOfBsnsDlg.close();
                     } else {
                         oModel.update("/zdd_lineofbusiness_vh(channelgroup='" + encodeURIComponent(channelgroup) + "',channel='" + encodeURIComponent(channel) + "',subchannel='" + encodeURIComponent(subchannel) + "',lineofbusinesstype='" + encodeURIComponent(lineofbusinesstype) + "')", buObj, {
@@ -1711,7 +1712,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.lineOfBsnsDlg.getModel().updateBindings(true);
+                        this.lineOfBsnsDlg.getModel().updateBindings();
                         this.lineOfBsnsDlg.close();
                     }
                 } else {
@@ -1781,7 +1782,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.payTermsDlg.getModel().updateBindings(true);
+                        this.payTermsDlg.getModel().updateBindings();
                         this.payTermsDlg.close();
                     }
                     else {
@@ -1796,7 +1797,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.payTermsDlg.getModel().updateBindings(true);
+                        this.payTermsDlg.getModel().updateBindings();
                         this.payTermsDlg.close();
                     }
                 } else {
@@ -1871,7 +1872,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.ExpPayTermsDlg.getModel().updateBindings(true);
+                        this.ExpPayTermsDlg.getModel().updateBindings();
                         this.ExpPayTermsDlg.close();
                     } else {
                         oModel.update("/ZDD_EXP_PYTTERM_VH(paymentterm='" + encodeURIComponent(paymentterm) + "',businessname='" + encodeURIComponent(businessname) + "',vertical='" + encodeURIComponent(vertical) + "',class='" + encodeURIComponent(classT) + "')", buObj, {
@@ -1886,7 +1887,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.ExpPayTermsDlg.getModel().updateBindings(true);
+                        this.ExpPayTermsDlg.getModel().updateBindings();
                         this.ExpPayTermsDlg.close();
                     }
                 } else {
@@ -1949,7 +1950,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.country.getModel().updateBindings(true);
+                        this.country.getModel().updateBindings();
                         this.country.close();
                     } else {
                         oModel.update("/zdd_country_vh('" + encodeURIComponent(country) + "')", buObj, {
@@ -1963,7 +1964,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.country.getModel().updateBindings(true);
+                        this.country.getModel().updateBindings();
                         this.country.close();
                     }
                 } else {
@@ -2033,7 +2034,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.remarks.getModel().updateBindings(true);
+                        this.remarks.getModel().updateBindings();
                         this.remarks.close();
                     } else {
                         oModel.update("/ZDD_REMARKS('" + encodeURIComponent(remarks) + "')", buObj, {
@@ -2047,7 +2048,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.remarks.getModel().updateBindings(true);
+                        this.remarks.getModel().updateBindings();
                         this.remarks.close();
                     }
                 } else {
@@ -2132,7 +2133,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.CredtManag.getModel().updateBindings(true);
+                        this.CredtManag.getModel().updateBindings();
                         this.CredtManag.close();
                     } else {
                         oModel.update("/ZDD_CM_MASTER(salesorganization='" + encodeURIComponent(salesorganization) + "',distribution_channel='" + encodeURIComponent(distribution_channel) + "',division='" + encodeURIComponent(division) + "')", buObj, {
@@ -2146,7 +2147,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.CredtManag.getModel().updateBindings(true);
+                        this.CredtManag.getModel().updateBindings();
                         this.CredtManag.close();
                     }
                 } else {

@@ -16,6 +16,7 @@
 				labelSpanS="4"
 				adjustLabelSpan="true"
 				emptySpanXL="0"
+				editable="true"
 				emptySpanL="0"
 				emptySpanM="0"
 				emptySpanS="0"
@@ -35,12 +36,12 @@
 					<Label text="Maximum Credit Days"/>
 					<Input value="{/maximumcreditdays}" maxLength="10"/>
                     <Label text="Business Unit"/>
-					<Select items="{path: 'CDPDModel>/',templateShareable: true}">
-                        <core:Item key="{CDPDModel>businessunit}" text="{CDPDModel>businessunit}" />
+					<Select forceSelection="false" items="{path: '/ZDD_BU_VH',templateShareable: true}">
+                        <core:Item key="{businessunit}" text="{businessunit}" />
                     </Select>
 					<Label text="Vertical"/>
-					<Select items="{path: 'verticalModel>/',templateShareable: true}">
-                        <core:Item key="{verticalModel>vertical}" text="{verticalModel>vertical}" />
+					<Select forceSelection="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
+                        <core:Item key="{vertical}" text="{verticaldescription}" />
                     </Select>
 					<Label text="DOA Role"/>
 					<Input value="{/doarole}" maxLength="40"/>

@@ -46,16 +46,16 @@
 						<core:Item key="Others" text="Others" />
                     </Select>
                     <Label text="Business Unit" required="true"/>
-					<Select  enabled="false" items="{path: 'DelegationTRModel>/',templateShareable: true}">
-                        <core:Item key="{DelegationTRModel>businessunit}" text="{DelegationTRModel>businessunit}" />
+					<Select  enabled="false" items="{path: '/ZDD_BU_VH',templateShareable: true}">
+                        <core:Item key="{businessunit}" text="{businessunit}" />
                     </Select>
 					<Label text="Vertical" required="true"/>
-					<Select enabled="false" items="{path: 'verticalModel>/',templateShareable: true}">
-                        <core:Item key="{verticalModel>vertical}" text="{verticalModel>vertical}" />
+					<Select enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
+                        <core:Item key="{vertical}" text="{verticaldescription}" />
                     </Select>
                     <Label text="Segment" required="true"/>
-					<Select enabled="false" items="{path: 'DelegationTRModel>/',templateShareable: true}">
-                        <core:Item key="{DelegationTRModel>segment}" text="{DelegationTRModel>segment}" />
+					<Select enabled="false" items="{path: '/ZDD_SEGMENT_VH',templateShareable: true}">
+                        <core:Item key="{segment}" text="{segment}" />
                     </Select>
 					<Label text="Minimum Quantity Limit" required="true"/>
 					<Input type="Number" value="{/minimumquantitylimit}" editable="false" maxLength="10"/>
@@ -67,8 +67,8 @@
                     <Label text="Maximum Value Limit" required="true"/>
 					<Input type="Number" value="{/maximumvaluelimit}" editable="false" maxLength="13"/>
 					<Label text="Last Selected Role" required="true"/>
-					<Select enabled="false" items="{path: 'DelegationTRModel>/',templateShareable: true}">
-                        <core:Item key="{DelegationTRModel>lastselectedrole}" text="{DelegationTRModel>lastselectedrole}" />
+					<Select enabled="false" items="{path: '/ZDD_LASTSELECTROLE_VH',templateShareable: true}">
+                        <core:Item key="{lastselectedrole}" text="{lastselectedrole}" />
                     </Select>
 					<Label text="Role Type"/>
 					<Input value="{/roletype}" maxLength="40"/>
