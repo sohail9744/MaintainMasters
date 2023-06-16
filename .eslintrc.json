@@ -1,0 +1,6 @@
+{
+    "rules": {
+      "sap-no-ui5class-id": "off"
+    }
+  }
+  

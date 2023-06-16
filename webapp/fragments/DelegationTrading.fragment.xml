@@ -24,37 +24,30 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Customer Type" required="true"/>
-					<Select enabled="false">
+					<Select forceSelection="false" enabled="false">
                         <core:Item key="LOCAL" text="LOCAL" />
 						<core:Item key="EXPORT" text="EXPORT" />
 						<core:Item key="RE-EXPORT" text="RE-EXPORT" />
                     </Select>
                     <Label text="Credit Limit Type" required="true"/>
-					<!-- <Select enabled="false" items="{path: '/ZDD_DELEGATION_TR_VH',templateShareable: true}">
-                        <core:Item key="{creditlimittype}" text="{creditlimittype}" />
-                    </Select> -->
-					<Select enabled="false">
+					<Select forceSelection="false" enabled="false">
                         <core:Item key="Secured" text="Secured" />
 						<core:Item key="Unsecured" text="Unsecured" />
                     </Select>
 					<Label text="Class Type" required="true"/>
-					<!-- <Select enabled="false" items="{path: '/ZDD_DELEGATION_TR_VH',templateShareable: true}">
-                        <core:Item key="{classtype}" text="{classtype}" />
-                    </Select> -->
-					<Select enabled="false">
-                        <core:Item key="Class A" text="Class A" />
-						<core:Item key="Others" text="Others" />
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_CLASS_VH',templateShareable: true}">
+                        <core:Item key="{class}" text="{class}" />
                     </Select>
                     <Label text="Business Unit" required="true"/>
-					<Select  enabled="false" items="{path: '/ZDD_BU_VH',templateShareable: true}">
+					<Select forceSelection="false"  enabled="false" items="{path: '/ZDD_BU_VH',templateShareable: true}">
                         <core:Item key="{businessunit}" text="{businessunit}" />
                     </Select>
 					<Label text="Vertical" required="true"/>
-					<Select enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
                         <core:Item key="{vertical}" text="{verticaldescription}" />
                     </Select>
                     <Label text="Segment" required="true"/>
-					<Select enabled="false" items="{path: '/ZDD_SEGMENT_VH',templateShareable: true}">
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_SEGMENT_VH',templateShareable: true}">
                         <core:Item key="{segment}" text="{segment}" />
                     </Select>
 					<Label text="Minimum Quantity Limit" required="true"/>
@@ -67,7 +60,7 @@
                     <Label text="Maximum Value Limit" required="true"/>
 					<Input type="Number" value="{/maximumvaluelimit}" editable="false" maxLength="13"/>
 					<Label text="Last Selected Role" required="true"/>
-					<Select enabled="false" items="{path: '/ZDD_LASTSELECTROLE_VH',templateShareable: true}">
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_LASTSELECTROLE_VH',templateShareable: true}">
                         <core:Item key="{lastselectedrole}" text="{lastselectedrole}" />
                     </Select>
 					<Label text="Role Type"/>

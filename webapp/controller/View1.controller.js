@@ -109,6 +109,10 @@ sap.ui.define([
             // handleMastersModels: function (oEvent) {
             // },
             handleAddCurrency: function (oEvent) {
+                if (!this.currencyDlg) {
+                    this.currencyDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.Currency", this);
+                    this.getView().addDependent(this.currencyDlg);
+                }
                 this.currency = "new";
                 this.currencyDlg.setTitle("Add New Currency Master");
                 this.currencyDlg.open();
@@ -116,8 +120,8 @@ sap.ui.define([
                 this.currencyDlg.getContent()[0].getContent()[4].setValue(null).setEditable(true);
                 this.currencyDlg.getContent()[0].getContent()[6].setSelectedKey(null);
                 this.currencyDlg.getContent()[0].getContent()[8].setValue(null);
-                this.currencyDlg.getContent()[0].getContent()[10].setValue(null);
-                this.currencyDlg.getContent()[0].getContent()[10].setSelectedIndex();
+                // this.currencyDlg.getContent()[0].getContent()[10].setValue(null);
+                // this.currencyDlg.getContent()[0].getContent()[10].setSelectedIndex();
             },
             handleCurrModel: function () {
                 var oModel = this.getOwnerComponent().getModel();
@@ -125,7 +129,7 @@ sap.ui.define([
                     success: function (oData, oResponse) {
                         var arr = [];
                         for (var i = 0; i < oData.results.length; i++) {
-                                arr.push({
+                            arr.push({
                                 "country": oData.results[i].country,
                                 "currency": oData.results[i].currency
                             });
@@ -164,7 +168,8 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Currency added successfully");
-
+                                this.getView().getModel().updateBindings();
+                                this.currencyDlg = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
@@ -179,14 +184,16 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
-
+                                // this.getView().getModel().updateBindings();
+                                this.getView().getModel().refresh();
+                                this.currencyDlg = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.currencyDlg.getModel().updateBindings();
+                        // this.currencyDlg.getModel().updateBindings();
                         this.currencyDlg.close();
                     }
                 } else {
@@ -196,19 +203,27 @@ sap.ui.define([
             },
             onCurrencyCancel: function (oEvent) {
                 this.currencyDlg.close();
+                this.currencyDlg = null
+                // this.currencyDlg.destroy(true);
+
             },
             handleEditCurrency: function (evt) {
+                if (!this.currencyDlg) {
+                    this.currencyDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.Currency", this);
+                    this.getView().addDependent(this.currencyDlg);
+                }
                 this.currency = "edit";
                 this.currencyDlg.setTitle("Edit Currency Master");
                 this.currencyDlg.open();
+                
+                var country = evt.getSource().getBindingContext().getObject().country;
+                this.currencyDlg.getContent()[0].getContent()[6].setForceSelection(true).setSelectedKey(country);
                 var currency = evt.getSource().getBindingContext().getObject().currency;
                 var abbrv = evt.getSource().getBindingContext().getObject().abbreviation;
-                var country = evt.getSource().getBindingContext().getObject().country;
                 var forexrate = evt.getSource().getBindingContext().getObject().forexrate;
                 var isactive = evt.getSource().getBindingContext().getObject().isactive;
-                this.currencyDlg.getContent()[0].getContent()[2].setValue(currency).setEditable(false);;
-                this.currencyDlg.getContent()[0].getContent()[4].setValue(abbrv).setEditable(false);;
-                this.currencyDlg.getContent()[0].getContent()[6].setSelectedKey(country);
+                this.currencyDlg.getContent()[0].getContent()[2].setValue(currency).setEditable(false);
+                this.currencyDlg.getContent()[0].getContent()[4].setValue(abbrv).setEditable(false);
                 this.currencyDlg.getContent()[0].getContent()[8].setValue(forexrate);
                 var index = (isactive == 'Yes') ? 0 : 1;
                 this.currencyDlg.getContent()[0].getContent()[10].setSelectedIndex(index);
@@ -350,7 +365,7 @@ sap.ui.define([
                 this.BUDialog.setTitle("Add New Business Unit");
                 this.BUDialog.getContent()[0].getContent()[2].setValue().setEditable(true);
                 this.BUDialog.getContent()[0].getContent()[4].setValue().setEditable(true);
-                this.BUDialog.getContent()[0].getContent()[6].setValue().setEditable(true);
+                this.BUDialog.getContent()[0].getContent()[6].setEnabled(true);
                 this.BUDialog.getContent()[0].getContent()[8].setSelectedKey(null);
                 this.BUDialog.getContent()[0].getContent()[10].setSelectedKey(null);
                 this.BUDialog.getContent()[0].getContent()[12].setSelectedKey(null);
@@ -390,7 +405,7 @@ sap.ui.define([
                 var oModel = this.getView().getModel();
                 var BusinessUnit = this.BUDialog.getContent()[0].getContent()[2].getValue();
                 var BuCode = this.BUDialog.getContent()[0].getContent()[4].getValue();
-                var vertical = this.BUDialog.getContent()[0].getContent()[6].getValue();
+                var vertical = this.BUDialog.getContent()[0].getContent()[6].getSelectedKey();
                 var isactive = this.BUDialog.getContent()[0].getContent()[75];
                 var issnd = this.BUDialog.getContent()[0].getContent()[73];
                 var childbusinessunit = this.BUDialog.getContent()[0].getContent()[8].getSelectedKey();
@@ -517,7 +532,7 @@ sap.ui.define([
                 var isactive = evt.getSource().getBindingContext().getObject().isactive;
                 this.BUDialog.getContent()[0].getContent()[2].setValue(Businessunit).setEditable(false);
                 this.BUDialog.getContent()[0].getContent()[4].setValue(bucode).setEditable(false);
-                this.BUDialog.getContent()[0].getContent()[6].setValue(vertical).setEditable(false);
+                this.BUDialog.getContent()[0].getContent()[6].setSelectedKey(vertical).setEnabled(false);
                 this.BUDialog.getContent()[0].getContent()[8].setSelectedKey(childbusinessunit);
                 this.BUDialog.getContent()[0].getContent()[10].setSelectedKey(currency);
                 this.BUDialog.getContent()[0].getContent()[12].setSelectedKey(erpsource);
@@ -1091,7 +1106,8 @@ sap.ui.define([
                 this.verticalDlg.setTitle("Add New Vertical Master");
                 this.verticalDlg.getContent()[0].getContent()[2].setValue().setEditable(true);
                 this.verticalDlg.getContent()[0].getContent()[4].setValue();
-                this.verticalDlg.getContent()[0].getContent()[6].setValue();
+                //Mohammad Sohail
+                this.verticalDlg.getContent()[0].getContent()[6].setSelectedIndex();
                 this.verticalDlg.getContent()[0].getContent()[8].setSelectedIndex();
                 this.verticalDlg.getContent()[0].getContent()[10].setSelectedIndex();
                 this.verticalDlg.getContent()[0].getContent()[12].setSelectedIndex();
@@ -1106,7 +1122,7 @@ sap.ui.define([
                     var buObj = {
                         "vertical": vertical,
                         "verticaldescription": this.verticalDlg.getContent()[0].getContent()[4].getValue(),
-                        "mdapprovalrequired": this.verticalDlg.getContent()[0].getContent()[6].getValue(),
+                        "mdapprovalrequired": this.verticalDlg.getContent()[0].getContent()[6].getSelectedButton().getText(),
                         "sitevisitcompulsion": this.verticalDlg.getContent()[0].getContent()[8].getSelectedButton().getText(),
                         "isactive": isactive,
                         "iscash": iscash
@@ -1154,16 +1170,17 @@ sap.ui.define([
                 this.verticalDlg.setTitle("Edit Vertical Master");
                 var vertical = evt.getSource().getBindingContext().getObject().vertical;
                 var verticaldescription = evt.getSource().getBindingContext().getObject().verticaldescription;
-                var mdapprovalrequired = evt.getSource().getBindingContext().getObject().mdapprovalrequired;
                 var sitevisitcompulsion = evt.getSource().getBindingContext().getObject().sitevisitcompulsion;
+                var mdapprovalrequired = evt.getSource().getBindingContext().getObject().mdapprovalrequired;
                 var isactive = evt.getSource().getBindingContext().getObject().isactive;
                 var iscash = evt.getSource().getBindingContext().getObject().iscash;
                 this.verticalDlg.getContent()[0].getContent()[2].setValue(vertical).setEditable(false);
                 this.verticalDlg.getContent()[0].getContent()[4].setValue(verticaldescription);
-                this.verticalDlg.getContent()[0].getContent()[6].setValue(mdapprovalrequired);
                 var index = (isactive == 'Yes') ? 0 : 1;
                 var index1 = (iscash == 'Yes') ? 0 : 1;
                 var index3 = (sitevisitcompulsion == 'Yes') ? 0 : 1;
+                var index4 = (mdapprovalrequired == 'Yes') ? 0 : 1;
+                this.verticalDlg.getContent()[0].getContent()[6].setSelectedIndex(index4);
                 this.verticalDlg.getContent()[0].getContent()[8].setSelectedIndex(index3);
                 this.verticalDlg.getContent()[0].getContent()[10].setSelectedIndex(index);
                 this.verticalDlg.getContent()[0].getContent()[12].setSelectedIndex(index1);
@@ -1173,6 +1190,10 @@ sap.ui.define([
                 this.verticalDlg.close();
             },
             handleAddDOAMaster: function (oEvent) {
+                if (!this.DOAMasterDlg) {
+                    this.DOAMasterDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.DOAmaster", this);
+                    this.getView().addDependent(this.DOAMasterDlg);
+                }
                 this.DOA = "new";
                 this.DOAMasterDlg.setTitle("Add New DOA Master");
                 this.DOAMasterDlg.getContent()[0].getContent()[2].setSelectedKey(null).setEnabled(true);
@@ -1253,6 +1274,7 @@ sap.ui.define([
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("DOA Master added successfully");
                                 this.handleDOAModel();
+                                this.DOAMasterDlg = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
@@ -1267,6 +1289,7 @@ sap.ui.define([
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
                                 this.handleDOAModel();
+                                this.DOAMasterDlg = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
@@ -1282,6 +1305,10 @@ sap.ui.define([
                 }
             },
             handleEditDOAMaster: function (evt) {
+                if (!this.DOAMasterDlg) {
+                    this.DOAMasterDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.DOAmaster", this);
+                    this.getView().addDependent(this.DOAMasterDlg);
+                }
                 this.DOA = "edit";
                 this.DOAMasterDlg.setTitle("Edit DOA Master");
                 var customertype = evt.getSource().getBindingContext().getObject().customertype;
@@ -1318,10 +1345,6 @@ sap.ui.define([
             },
             handleAddDelegationTR: function () {
                 this.Dtrading = "new";
-                // debugger
-                // this.getView().getModel("DelegationTRModel").getData().unshift({
-                //     businessunit: "blankKey",
-                // })
                 this.DelegationTrDlg.setTitle("Add New Delegation Trading");
                 this.DelegationTrDlg.getContent()[0].getContent()[2].setForceSelection(false).setEnabled(true);
                 this.DelegationTrDlg.getContent()[0].getContent()[4].setForceSelection(false).setEnabled(true);
@@ -1876,7 +1899,7 @@ sap.ui.define([
                         this.ExpPayTermsDlg.close();
                     } else {
                         oModel.update("/ZDD_EXP_PYTTERM_VH(paymentterm='" + encodeURIComponent(paymentterm) + "',businessname='" + encodeURIComponent(businessname) + "',vertical='" + encodeURIComponent(vertical) + "',class='" + encodeURIComponent(classT) + "')", buObj, {
-                        // oModel.update("/ZDD_EXP_PYTTERM_VH(paymentterm='" + paymentterm + "',businessname='" + businessname + "',vertical='" + vertical + "',class='" + classT + "')", buObj, {
+                            // oModel.update("/ZDD_EXP_PYTTERM_VH(paymentterm='" + paymentterm + "',businessname='" + businessname + "',vertical='" + vertical + "',class='" + classT + "')", buObj, {
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");

@@ -28,8 +28,8 @@
 					<Label text="Abbreviation" required="true"/>
 					<Input value="{/abbreviation}" editable="false" maxLength="3"/>
 					<Label text="Country"/>
-					<Select items="{path: 'CurrencyModel>/',templateShareable: true}">
-                        <core:Item key="{CurrencyModel>country}" text="{CurrencyModel>country}" />
+					<Select forceSelection="false" items="{path: '/zdd_country_vh',templateShareable: true}">
+                        <core:Item key="{country}" text="{country}" />
                     </Select>
 					<Label text="Forexrate" required="true"/>
 					<Input type="Number" value="{/forexrate}" maxLength="13"/>

@@ -24,28 +24,28 @@
 				<f:content>
 					<core:Title text=""/>
 					<Label text="Customer Type" required="true"/>
-					<Select enabled="false">
+					<Select forceSelection="false" enabled="false">
                         <core:Item key="LOCAL" text="LOCAL" />
 						<core:Item key="EXPORT" text="EXPORT" />
 						<core:Item key="RE-EXPORT" text="RE-EXPORT" />
                     </Select>
 					<Label text="Class" required="true"/>
-					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
-                        <core:Item key="{DOAModel>class}" text="{DOAModel>class}" />
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_CLASS_VH',templateShareable: true}">
+                        <core:Item key="{class}" text="{class}" />
                     </Select>
 					<Label text="Credit Type" required="true"/>
 					<!-- <Input value="{/credittype}" editable="false"/> -->
-					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
-                        <core:Item key="{DOAModel>credittype}" text="{DOAModel>credittype}" />
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_CREDITTYPE_VH',templateShareable: true}">
+                        <core:Item key="{credittype}" text="{credittype}" />
                     </Select>
                     <Label text="Business Unit" required="true"/>
 					<!-- <Input value="{/businessunit}" editable="false"/>					 -->
-					<Select enabled="false" items="{path: 'DOAModel>/',templateShareable: true}">
-                        <core:Item key="{DOAModel>businessunit}" text="{DOAModel>businessunit}" />
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_BU_VH',templateShareable: true}">
+                        <core:Item key="{businessunit}" text="{businessunit}" />
                     </Select>
 					<Label text="Vertical" required="true"/>
 					<!-- <Input value="{/vertical}" editable="false"/> -->
-					<Select enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
                         <core:Item key="{vertical}" text="{verticaldescription}" />
                     </Select>
 					<Label text="Minimum Credit Limit" required="true"/>
@@ -55,7 +55,7 @@
                     <core:Title text=""/>
 					<Label text="Last Selected Role" required="true"/>
 					<!-- <Input value="{/lastselectedrole}" editable="false"/> -->
-					<Select enabled="false" items="{path: '/ZDD_LASTSELECTROLE_VH',templateShareable: true}">
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_LASTSELECTROLE_VH',templateShareable: true}">
                         <core:Item key="{lastselectedrole}" text="{lastselectedrole}" />
                     </Select>
                     <Label text="Is CAD"/>
