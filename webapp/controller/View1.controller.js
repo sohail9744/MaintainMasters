@@ -97,17 +97,14 @@ sap.ui.define([
                     this.CredtManag = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.creditManagement", this);
                     this.getView().addDependent(this.CredtManag);
                 }
-                this.handleBUModel();
-                this.emlTempltModel();
-                this.handleCurrModel();
-                this.handleViolationModel();
-                this.handleDOAModel();
-                this.handleReminderModel();
-                this.handleDelgTrdngModel();
-                // this.handleMastersModels();
+                // this.handleBUModel();
+                // this.emlTempltModel();
+                // // this.handleCurrModel();
+                // this.handleViolationModel();
+                // this.handleDOAModel();
+                // this.handleReminderModel();
+                // this.handleDelgTrdngModel();
             },
-            // handleMastersModels: function (oEvent) {
-            // },
             handleAddCurrency: function (oEvent) {
                 if (!this.currencyDlg) {
                     this.currencyDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.Currency", this);
@@ -215,7 +212,7 @@ sap.ui.define([
                 this.currency = "edit";
                 this.currencyDlg.setTitle("Edit Currency Master");
                 this.currencyDlg.open();
-                
+
                 var country = evt.getSource().getBindingContext().getObject().country;
                 this.currencyDlg.getContent()[0].getContent()[6].setForceSelection(true).setSelectedKey(country);
                 var currency = evt.getSource().getBindingContext().getObject().currency;
@@ -361,6 +358,10 @@ sap.ui.define([
                 });
             },
             handleAddBU: function (evt) {
+                if (!this.BUDialog) {
+                    this.BUDialog = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.BusinessUnit", this);
+                    this.getView().addDependent(this.BUDialog);
+                }
                 this.BU = "new";
                 this.BUDialog.setTitle("Add New Business Unit");
                 this.BUDialog.getContent()[0].getContent()[2].setValue().setEditable(true);
@@ -457,11 +458,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Business Unit added successfully");
+                                this.BUDialog = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.BUDialog = null
                             }
                         });
                         this.BUDialog.getModel().updateBindings();
@@ -472,11 +475,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
+                                this.BUDialog = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.BUDialog = null
                             }
                         });
                         this.BUDialog.getModel().updateBindings();
@@ -489,8 +494,13 @@ sap.ui.define([
             },
             onBUCancel: function (oEvent) {
                 this.BUDialog.close();
+                this.BUDialog = null
             },
             handleEditBU: function (evt) {
+                if (!this.BUDialog) {
+                    this.BUDialog = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.BusinessUnit", this);
+                    this.getView().addDependent(this.BUDialog);
+                }
                 this.BU = "edit";
                 this.BUDialog.setTitle("Edit Bank Master");
                 this.BUDialog.open();
@@ -570,6 +580,10 @@ sap.ui.define([
                 this.BUDialog.getContent()[0].getContent()[75].setSelectedIndex(index);
             },
             handleAddBankMaster: function (oEvent) {
+                if (!this.bankMasterDlg) {
+                    this.bankMasterDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.BankMaster", this);
+                    this.getView().addDependent(this.bankMasterDlg);
+                }
                 this.BM = "new";
                 this.bankMasterDlg.setTitle("Add New Bank Master");
                 this.bankMasterDlg.getContent()[0].getContent()[2].setValue().setEditable(true);
@@ -587,7 +601,7 @@ sap.ui.define([
                 if (bank) {
                     var buObj = {
                         "bank": bank,
-                        "country": this.bankMasterDlg.getContent()[0].getContent()[4].getValue(),
+                        "country": this.bankMasterDlg.getContent()[0].getContent()[4].getSelectedKey(),
                         "isactive": isactive.getSelectedButton() ? isactive.getSelectedButton().getText() : "",
                         "isbank_with_condition": bankWithCondn.getSelectedButton() ? bankWithCondn.getSelectedButton().getText() : "",
                     }
@@ -600,26 +614,30 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Bank Master added successfully");
+                                this.bankMasterDlg = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.bankMasterDlg = null
                             }
                         });
                         this.bankMasterDlg.getModel().updateBindings();
                         this.bankMasterDlg.close();
                     } else {
+                        debugger
                         oModel.update("/ZDD_BANK_VH('" + encodeURIComponent(bank) + "')", buObj, {
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
-
+                                this.bankMasterDlg = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
-                            }
+                                this.bankMasterDlg = null
+                            }.bind(this)
                         });
                         this.bankMasterDlg.getModel().updateBindings();
                         this.bankMasterDlg.close();
@@ -630,6 +648,10 @@ sap.ui.define([
                 }
             },
             handleEditBankMaster: function (evt) {
+                if (!this.bankMasterDlg) {
+                    this.bankMasterDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.BankMaster", this);
+                    this.getView().addDependent(this.bankMasterDlg);
+                }
                 this.BM = "edit";
                 this.bankMasterDlg.setTitle("Edit Bank Master");
                 var bank = evt.getSource().getBindingContext().getObject().bank;
@@ -637,7 +659,7 @@ sap.ui.define([
                 var isactive = evt.getSource().getBindingContext().getObject().isactive;
                 var isbank_with_condition = evt.getSource().getBindingContext().getObject().isbank_with_condition;
                 this.bankMasterDlg.getContent()[0].getContent()[2].setValue(bank).setEditable(false);
-                this.bankMasterDlg.getContent()[0].getContent()[4].setValue(country);
+                this.bankMasterDlg.getContent()[0].getContent()[4].setSelectedKey(country);
                 var index = (isactive == 'Yes') ? 0 : 1;
                 var index1 = (isbank_with_condition == 'Yes') ? 0 : 1;
                 this.bankMasterDlg.getContent()[0].getContent()[6].setSelectedIndex(index);
@@ -646,6 +668,7 @@ sap.ui.define([
             },
             onBankCancel: function (evt) {
                 this.bankMasterDlg.close();
+                this.bankMasterDlg = null
             },
             handleAddCM: function (evt) {
                 this.CM = "new";
@@ -658,10 +681,10 @@ sap.ui.define([
                 var oModel = this.getView().getModel();
                 var channel = this.channelMasterDlg.getContent()[0].getContent()[2].getValue();
                 var isactive = this.channelMasterDlg.getContent()[0].getContent()[4].getSelectedButton().getText();
-                if (isactive == "Yes") {
-                    isactive = "1";
+                if (isactive == 'Yes') {
+                    isactive = '0';
                 } else {
-                    isactive = "0";
+                    isactive = '1';
                 }
                 if (channel) {
                     var buObj = {
@@ -684,7 +707,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.channelMasterDlg.getModel().updateBindings();
+                        this.channelMasterDlg.getModel().updateBindings(true);
                         this.channelMasterDlg.close();
                     } else {
                         oModel.update("/ZDD_Channel_VH('" + encodeURIComponent(channel) + "')", buObj, {
@@ -698,7 +721,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.channelMasterDlg.getModel().updateBindings();
+                        this.channelMasterDlg.getModel().updateBindings(true);
                         this.channelMasterDlg.close();
                     }
                 } else {
@@ -729,7 +752,7 @@ sap.ui.define([
             onChannelGCreate: function (oEvent) {
                 var oModel = this.getView().getModel();
                 var channelGrp = this.channelGrpDlg.getContent()[0].getContent()[2].getValue();
-                var isactive = this.channelMasterDlg.getContent()[0].getContent()[4];
+                var isactive = this.channelGrpDlg.getContent()[0].getContent()[4];
                 if (channelGrp && isactive) {
                     var buObj = {
                         "channelgroup": channelGrp,
@@ -751,7 +774,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.channelGrpDlg.getModel().updateBindings();
+                        this.channelGrpDlg.getModel().updateBindings(true);
                         this.channelGrpDlg.close();
                     } else {
                         oModel.update("/ZDD_ChannleGroup_VH('" + encodeURIComponent(channelGrp) + "')", buObj, {
@@ -765,7 +788,7 @@ sap.ui.define([
                                 sap.m.MessageBox.error(oError.message);
                             }
                         });
-                        this.channelGrpDlg.getModel().updateBindings();
+                        this.channelGrpDlg.getModel().updateBindings(true);
                         this.channelGrpDlg.close();
                     }
                 } else {
@@ -787,6 +810,10 @@ sap.ui.define([
                 this.channelGrpDlg.close();
             },
             handleAddViolation: function (oEvent) {
+                if (!this.violationDlg) {
+                    this.violationDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.violation", this);
+                    this.getView().addDependent(this.violationDlg);
+                }
                 this.violation = "new";
                 this.violationDlg.setTitle("Add New Violation Master");
                 this.violationDlg.getContent()[0].getContent()[2].setSelectedKey(null).setEnabled(true);
@@ -841,11 +868,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Violation added successfully");
+                                this.violationDlg = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.violationDlg = null
                             }
                         });
                         this.violationDlg.getModel().updateBindings();
@@ -855,11 +884,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
+                                this.violationDlg = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.violationDlg = null
                             }
                         });
                         this.violationDlg.getModel().updateBindings();
@@ -871,6 +902,10 @@ sap.ui.define([
                 }
             },
             handleEditViolation: function (evt) {
+                if (!this.violationDlg) {
+                    this.violationDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.violation", this);
+                    this.getView().addDependent(this.violationDlg);
+                }
                 this.violation = "edit";
                 this.violationDlg.setTitle("Edit Violation Master");
                 var businessunitname = evt.getSource().getBindingContext().getObject().businessunitname;
@@ -888,6 +923,7 @@ sap.ui.define([
             },
             onViolationCancel: function (oEvent) {
                 this.violationDlg.close();
+                this.violationDlg = null
             },
             handleAddSC: function (oEvent) {
                 this.SC = "new";
@@ -956,6 +992,10 @@ sap.ui.define([
                 this.subChannelDlg.close();
             },
             handleAddReminder: function (oEvent) {
+                if (!this.reminderDlg) {
+                    this.reminderDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.Reminder", this);
+                    this.getView().addDependent(this.reminderDlg);
+                }
                 this.Reminder = "new";
                 this.reminderDlg.setTitle("Add New Reminder Master");
                 this.reminderDlg.getContent()[0].getContent()[2].setValue().setEditable(true);
@@ -964,11 +1004,7 @@ sap.ui.define([
                 // this.reminderDlg.getContent()[0].getContent()[8].setSelectedKey(undefined);
                 // this.reminderDlg.getContent()[0].getContent()[10].setSelectedKey(null);
                 // this.reminderDlg.getContent()[0].getContent()[12].setSelectedKey(null);
-                this.reminderDlg.getContent()[0].getContent()[6].setForceSelection(false);
-                this.reminderDlg.getContent()[0].getContent()[8].setForceSelection(false);
-                this.reminderDlg.getContent()[0].getContent()[10].setForceSelection(false);
-                this.reminderDlg.getContent()[0].getContent()[12].setForceSelection(false);
-                this.violationDlg.getContent()[0].getContent()[10].setSelectedIndex();
+                this.violationDlg.getContent()[0].getContent()[10].setSelectedIndex(0);
                 this.reminderDlg.open();
             },
             handleReminderModel: function () {
@@ -1017,11 +1053,12 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Reminder added successfully");
-
+                                this.reminderDlg = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.reminderDlg = null
                             }
                         });
                         this.reminderDlg.getModel().updateBindings();
@@ -1031,11 +1068,12 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
-
+                                this.reminderDlg = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.reminderDlg = null
                             }
                         });
                         this.reminderDlg.getModel().updateBindings();
@@ -1047,6 +1085,10 @@ sap.ui.define([
                 }
             },
             handleEditReminder: function (evt) {
+                if (!this.reminderDlg) {
+                    this.reminderDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.Reminder", this);
+                    this.getView().addDependent(this.reminderDlg);
+                }
                 this.Reminder = "edit";
                 this.reminderDlg.setTitle("Edit Reminder Master");
                 var title = evt.getSource().getBindingContext().getObject().title;
@@ -1054,7 +1096,8 @@ sap.ui.define([
                 var toroles = evt.getSource().getBindingContext().getObject().toroles;
                 var ccroles = evt.getSource().getBindingContext().getObject().ccroles;
                 var status = evt.getSource().getBindingContext().getObject().status;
-                var emailtemplatebody = atob(evt.getSource().getBindingContext().getObject().emailtemplatebody);
+                // var emailtemplatebody = atob(evt.getSource().getBindingContext().getObject().emailtemplatebody);
+                var emailtemplatebody = evt.getSource().getBindingContext().getObject().emailtemplatebody;
                 var isactive = evt.getSource().getBindingContext().getObject().isactive;
                 this.reminderDlg.getContent()[0].getContent()[2].setValue(title).setEditable(false);
                 this.reminderDlg.getContent()[0].getContent()[4].setValue(daysno);
@@ -1085,11 +1128,13 @@ sap.ui.define([
                         var templateSetModel = new sap.ui.model.json.JSONModel(arr);
                         this.getView().setModel(templateSetModel, "templateModel");
                         this.getView().getModel("templateModel").updateBindings();
+                        this.reminderDlg = null
 
                     }.bind(this),
                     error: function (oError) {
                         jQuery.sap.require("sap.m.MessageBox");
                         sap.m.MessageBox.error(oError.message);
+                        this.reminderDlg = null
                     }
                 });
             },
@@ -1100,6 +1145,7 @@ sap.ui.define([
 
             onReminderCancel: function (oEvent) {
                 this.reminderDlg.close();
+                this.reminderDlg = null
             },
             handleAddVertical: function (oEvent) {
                 this.vertical = "new";
@@ -1344,6 +1390,10 @@ sap.ui.define([
                 this.DOAMasterDlg.close();
             },
             handleAddDelegationTR: function () {
+                if (!this.DelegationTrDlg) {
+                    this.DelegationTrDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.DelegationTrading", this);
+                    this.getView().addDependent(this.DelegationTrDlg);
+                }
                 this.Dtrading = "new";
                 this.DelegationTrDlg.setTitle("Add New Delegation Trading");
                 this.DelegationTrDlg.getContent()[0].getContent()[2].setForceSelection(false).setEnabled(true);
@@ -1425,12 +1475,14 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Delegation Trading added successfully");
+                                this.DelegationTrDlg = null
                                 this.handleDelgTrdngModel();
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.DelegationTrDlg = null
                             }
                         });
                         this.handleDelgTrdngModel();
@@ -1441,11 +1493,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
+                                this.DelegationTrDlg = null
                                 this.handleDelgTrdngModel();
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.DelegationTrDlg = null
                             }
                         });
                         this.handleDelgTrdngModel();
@@ -1457,7 +1511,12 @@ sap.ui.define([
                 }
             },
             handleEditDelegationTR: function (evt) {
+                if (!this.DelegationTrDlg) {
+                    this.DelegationTrDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.DelegationTrading", this);
+                    this.getView().addDependent(this.DelegationTrDlg);
+                }
                 this.Dtrading = "edit";
+                debugger
                 this.DelegationTrDlg.setTitle("Edit Delegation Trading");
                 var customertype = evt.getSource().getBindingContext().getObject().customertype;
                 var creditlimittype = evt.getSource().getBindingContext().getObject().creditlimittype;
@@ -1495,8 +1554,13 @@ sap.ui.define([
             },
             onDelegationTRCancel: function () {
                 this.DelegationTrDlg.close();
+                this.DelegationTrDlg = null
             },
             handleAddCDPD: function () {
+                if (!this.CDPDDialog) {
+                    this.CDPDDialog = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.CrdtDysPerDomstic", this);
+                    this.getView().addDependent(this.CDPDDialog);
+                }
                 this.CDPD = "new";
                 this.CDPDDialog.setTitle("Add New Credit Days Per Domestic");
                 this.CDPDDialog.getContent()[0].getContent()[2].setValue().setEditable(true);
@@ -1539,11 +1603,12 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Credit Days Per Domestic added successfully");
-
+                                this.CDPDDialog = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.CDPDDialog = null
                             }
                         });
                         this.CDPDDialog.getModel().updateBindings();
@@ -1553,11 +1618,12 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
-
+                                this.CDPDDialog = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.CDPDDialog = null
                             }
                         });
                         this.CDPDDialog.getModel().updateBindings();
@@ -1569,6 +1635,10 @@ sap.ui.define([
                 }
             },
             handleEditCDPD: function (evt) {
+                if (!this.CDPDDialog) {
+                    this.CDPDDialog = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.CrdtDysPerDomstic", this);
+                    this.getView().addDependent(this.CDPDDialog);
+                }
                 this.CDPD = "edit";
                 this.CDPDDialog.setTitle("Edit Credit Days Per Domestic");
                 var srno = evt.getSource().getBindingContext().getObject().srno;
@@ -1599,6 +1669,7 @@ sap.ui.define([
             },
             onCDPDCancel: function () {
                 this.CDPDDialog.close();
+                this.CDPDDialog = null
             },
             handleAddLegalStatus: function (evt) {
                 this.leglSttus = "new";
@@ -1682,6 +1753,10 @@ sap.ui.define([
                 this.legalStatsDlg.close();
             },
             handleAddLOBT: function () {
+                if (!this.lineOfBsnsDlg) {
+                    this.lineOfBsnsDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.lineOfBusnsType", this);
+                    this.getView().addDependent(this.lineOfBsnsDlg);
+                }
                 this.LOBT = "new";
                 this.lineOfBsnsDlg.setTitle("Add New Line Of Business Type");
                 this.lineOfBsnsDlg.getContent()[0].getContent()[2].setSelectedKey(null).setEnabled(true);
@@ -1714,11 +1789,12 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Line of Business Type added successfully");
-
+                                this.lineOfBsnsDlg = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.lineOfBsnsDlg = null
                             }
                         });
                         this.lineOfBsnsDlg.getModel().updateBindings();
@@ -1728,11 +1804,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
+                                this.lineOfBsnsDlg = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.lineOfBsnsDlg = null
                             }
                         });
                         this.lineOfBsnsDlg.getModel().updateBindings();
@@ -1744,6 +1822,10 @@ sap.ui.define([
                 }
             },
             handleEditLOBT: function (evt) {
+                if (!this.lineOfBsnsDlg) {
+                    this.lineOfBsnsDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.lineOfBusnsType", this);
+                    this.getView().addDependent(this.lineOfBsnsDlg);
+                }
                 this.LOBT = "edit";
                 this.lineOfBsnsDlg.setTitle("Edit Line Of Business Type");
                 var channelgroup = evt.getSource().getBindingContext().getObject().channelgroup;
@@ -1761,8 +1843,13 @@ sap.ui.define([
             },
             onLOBTCancel: function () {
                 this.lineOfBsnsDlg.close();
+                this.lineOfBsnsDlg = null
             },
             handleAddPayTerms: function () {
+                if (!this.payTermsDlg) {
+                    this.payTermsDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.PaymentTerms", this);
+                    this.getView().addDependent(this.payTermsDlg);
+                }
                 this.payTerms = "new";
                 this.payTermsDlg.setTitle("Add New Payment Terms");
                 this.payTermsDlg.getContent()[0].getContent()[2].setSelectedKey(null).setEnabled(true);
@@ -1798,11 +1885,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Payment Terms added successfully");
+                                this.payTermsDlg = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.payTermsDlg = null
                             }
                         });
                         this.payTermsDlg.getModel().updateBindings();
@@ -1813,11 +1902,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
+                                this.payTermsDlg = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.payTermsDlg = null
                             }
                         });
                         this.payTermsDlg.getModel().updateBindings();
@@ -1829,6 +1920,10 @@ sap.ui.define([
                 }
             },
             handleEditPayTerms: function (evt) {
+                if (!this.payTermsDlg) {
+                    this.payTermsDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.PaymentTerms", this);
+                    this.getView().addDependent(this.payTermsDlg);
+                }
                 this.payTerms = "edit";
                 this.payTermsDlg.setTitle("Edit Payment Terms");
                 var customertype = evt.getSource().getBindingContext().getObject().customertype;
@@ -1852,7 +1947,10 @@ sap.ui.define([
                 this.payTermsDlg.close();
             },
             handleAddExpPayTerms: function () {
-                debugger
+                if (!this.ExpPayTermsDlg) {
+                    this.ExpPayTermsDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.exportPayTerms", this);
+                    this.getView().addDependent(this.ExpPayTermsDlg);
+                }
                 this.expPayTerms = "new";
                 this.ExpPayTermsDlg.setTitle("Add New Export Payment Terms");
                 this.ExpPayTermsDlg.getContent()[0].getContent()[2].setValue().setEditable(true);
@@ -1863,7 +1961,6 @@ sap.ui.define([
                 this.ExpPayTermsDlg.open();
             },
             onExpPayTermCreate: function () {
-                debugger
                 var oModel = this.getView().getModel();
                 var paymentterm = this.ExpPayTermsDlg.getContent()[0].getContent()[2].getValue();
                 var businessname = this.ExpPayTermsDlg.getContent()[0].getContent()[4].getSelectedKey();
@@ -1872,12 +1969,13 @@ sap.ui.define([
                 var creditdays = this.ExpPayTermsDlg.getContent()[0].getContent()[10].getValue();
                 if (paymentterm && businessname && vertical && classT) {
                     var buObj = {
-                        "paymentterm": paymentterm,
                         "businessname": businessname,
+                        "paymentterm": paymentterm,
                         "vertical": vertical,
                         "class": classT,
                         "creditdays": creditdays
                     };
+                    debugger
                     var postObj = {
                         "d": buObj
                     };
@@ -1888,11 +1986,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Payment Terms added successfully");
+                                this.ExpPayTermsDlg = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.ExpPayTermsDlg = null
                             }
                         });
                         this.ExpPayTermsDlg.getModel().updateBindings();
@@ -1903,11 +2003,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
+                                this.ExpPayTermsDlg = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.ExpPayTermsDlg = null
                             }
                         });
                         this.ExpPayTermsDlg.getModel().updateBindings();
@@ -1919,6 +2021,10 @@ sap.ui.define([
                 }
             },
             handleEditExpPayTerms: function (evt) {
+                if (!this.ExpPayTermsDlg) {
+                    this.ExpPayTermsDlg = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.exportPayTerms", this);
+                    this.getView().addDependent(this.ExpPayTermsDlg);
+                }
                 this.expPayTerms = "edit";
                 this.ExpPayTermsDlg.setTitle("Edit Export Payment Terms");
                 var paymentterm = evt.getSource().getBindingContext().getObject().paymentterm;
@@ -1935,6 +2041,7 @@ sap.ui.define([
             },
             onExpPayTermCancel: function () {
                 this.ExpPayTermsDlg.close();
+                this.ExpPayTermsDlg = null
             },
             handleAddCountry: function () {
                 this.Ctry = "new";
@@ -2114,6 +2221,10 @@ sap.ui.define([
                 //this.CredtManag.open();
             },
             handleAddCreditManag: function (evt) {
+                if (!this.CredtManag) {
+                    this.CredtManag = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.creditManagement", this);
+                    this.getView().addDependent(this.CredtManag);
+                }
                 this.CrdtMng = "new";
                 this.CredtManag.setTitle("Add New Credit Management");
                 this.CredtManag.getContent()[0].getContent()[2].setValue().setEditable(true);
@@ -2149,11 +2260,12 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Credit Management added successfully");
-
+                                this.CredtManag = null
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.CredtManag = null
                             }
                         });
                         this.CredtManag.getModel().updateBindings();
@@ -2163,11 +2275,13 @@ sap.ui.define([
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Changes saved successfully");
+                                this.CredtManag = null
 
                             }.bind(this),
                             error: function (oError) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.error(oError.message);
+                                this.CredtManag = null
                             }
                         });
                         this.CredtManag.getModel().updateBindings();
@@ -2179,6 +2293,10 @@ sap.ui.define([
                 }
             },
             handleEditCreditManag: function (evt) {
+                if (!this.CredtManag) {
+                    this.CredtManag = new sap.ui.xmlfragment("com.iffco.maintainmasterdata.fragments.creditManagement", this);
+                    this.getView().addDependent(this.CredtManag);
+                }
                 this.CrdtMng = "edit";
                 this.CredtManag.setTitle("Edit Credit Management");
                 var salesorganization = evt.getSource().getBindingContext().getObject().salesorganization;
@@ -2199,6 +2317,7 @@ sap.ui.define([
             },
             onCreditManagCancel: function (evt) {
                 this.CredtManag.close();
+                this.CredtManag = null
             },
             handleDeleteBU: function (oEvent) {
                 var oSelectedItem = oEvent.getSource().getParent().getParent().getSelectedItem();

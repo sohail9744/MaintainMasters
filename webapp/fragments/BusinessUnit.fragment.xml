@@ -9,24 +9,20 @@
                     <Label text="BU Code" required="true"/>
                     <Input value="{/bucode}" editable="false" maxLength="40"/>
                     <Label text="vertical" required="true"/>
-                    <!-- <Input value="{/vertical}" editable="false" maxLength="70"/> -->
-                    <!-- Mohammad Sohail: verticle should be in selctBox -->
+                    <!-- Mohammad Sohail: verticle should be in selectBox -->
                        <Select forceSelection="false" enabled="false" items="{path: '/ZDD_Vertical_VH', templateShareable: true}">
                         <core:Item key="{vertical}" text="{verticaldescription}" />
                     </Select>
                     <Label text="Child Business Unit" />
-                    <Select items="{path: '/ZDD_CHILD_BU_VH',templateShareable: true}">
+                    <Select forceSelection="false" items="{path: '/ZDD_CHILD_BU_VH',templateShareable: true}">
                         <core:Item key="{childbusinessunit}" text="{childbusinessunit}" />
                     </Select>
                     <Label text="Currency" />
-                    <Select items="{path: '/zdd_cr_currency_vh', templateShareable: true}">
+                    <Select forceSelection="false" items="{path: '/zdd_cr_currency_vh', templateShareable: true}">
                         <core:Item key="{abbreviation}" text="{abbreviation}" />
                     </Select>
                     <Label text="ERP Source" />
-                    <!-- <Select items="{path: 'BUModel>/',templateShareable: true}">
-                        <core:Item key="{BUModel>erpsource}" text="{BUModel>erpsource}" />
-                    </Select> -->
-                    <Select items="{path: '/ZDD_BU_ERP_VH',templateShareable: true}">
+                    <Select forceSelection="false" items="{path: '/ZDD_BU_ERP_VH',templateShareable: true}">
                         <core:Item key="{erpsource}" text="{erpsource}" />
                     </Select>
                     <Label text="BU Short Code" />

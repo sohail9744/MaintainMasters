@@ -7,7 +7,9 @@
                     <Label text="Bank" required="true"/>
                     <Input value="{/bank}" editable="false" maxLength="70"/>
                     <Label text="Country" />
-                    <Input value="{/country}" maxLength="40"/>
+                    <Select forceSelection="false" items="{path: '/zdd_country_vh',templateShareable: true}">
+                        <core:Item key="{country}" text="{country}" />
+                    </Select>
                     <Label text="Is Active" />
                     <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">
                         <RadioButton text="Yes" />

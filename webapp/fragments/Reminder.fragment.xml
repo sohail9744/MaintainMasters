@@ -10,23 +10,26 @@
                     <Input value="{/daysno}" maxLength="10"/>
                     <Label text="To Roles" />
                     <!-- <Input value="{/toroles}" /> -->
-                    <Select items="{path: 'ReminderModel>/',templateShareable: true}">
+                    <!-- <Select items="{path: 'ReminderModel>/',templateShareable: true}">
                         <core:Item key="{ReminderModel>toroles}" text="{ReminderModel>toroles}" />
+                    </Select> -->
+                    <Select forceSelection="false" items="{path: '/ZDD_REMINDER',templateShareable: true}">
+                        <core:Item key="{toroles}" text="{toroles}" />
                     </Select>
                     <Label text="CC Roles" />
                     <!-- <Input value="{/ccroles}" /> -->
-                    <Select items="{path: 'ReminderModel>/',templateShareable: true}">
-                        <core:Item key="{ReminderModel>ccroles}" text="{ReminderModel>ccroles}" />
+                    <Select forceSelection="false" items="{path: '/ZDD_REMINDER',templateShareable: true}">
+                        <core:Item key="{ccroles}" text="{ccroles}" />
                     </Select>
                     <Label text="Status" />
                     <!-- <Input value="{/status}" /> -->
-                    <Select items="{path: 'ReminderModel>/',templateShareable: true}">
-                        <core:Item key="{ReminderModel>status}" text="{ReminderModel>status}" />
+                    <Select forceSelection="false" items="{path: '/ZDD_REMINDER',templateShareable: true}">
+                        <core:Item key="{status}" text="{status}" />
                     </Select>
                     <Label text="Email Template Body" />
                     <!-- <Input value="{/emailtemplatebody}" /> -->
-                    <Select items="{path: 'ReminderModel>/',templateShareable: true}">
-                        <core:Item key="{ReminderModel>emailtemplatebody}" text="{ReminderModel>emailtemplatebody}" />
+                    <Select forceSelection="false" items="{path: '/ZDD_REMINDER',templateShareable: true}">
+                        <core:Item key="{emailtemplatebody}" text="{emailtemplatebody}" />
                     </Select>
                     <Label text="Is Active" />
                     <RadioButtonGroup columns="3" selectedIndex="{=${/isactive} === 'Yes' ? 0 : 1}" width="100%">

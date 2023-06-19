@@ -103,7 +103,7 @@
 										<ColumnListItem type="Navigation" press="handleEditCM">
 											<cells>
 												<Text text="{channel}"/>
-												<Text text="{isactive}"/>
+												<Text text="{=${isactive} === '0' ? 'Yes' : 'No'}"/>
 											</cells>
 										</ColumnListItem>
 									</items>
