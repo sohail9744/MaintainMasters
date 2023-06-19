@@ -46,7 +46,7 @@
 					<Label text="Vertical" required="true"/>
 					<!-- <Input value="{/vertical}" editable="false"/> -->
 					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
-                        <core:Item key="{vertical}" text="{verticaldescription}" />
+                        <core:Item key="{verticaldescription}" text="{verticaldescription}" />
                     </Select>
 					<Label text="Minimum Credit Limit" required="true"/>
 					<Input type="Number" value="{/minimumcreditlimit}" editable="false" maxLength="13"/>

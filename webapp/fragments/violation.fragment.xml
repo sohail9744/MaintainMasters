@@ -29,7 +29,7 @@
                     </Select>
 					<Label text="Vertical Name" required="true"/>
 					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
-                        <core:Item key="{vertical}" text="{verticaldescription}" />
+                        <core:Item key="{verticaldescription}" text="{verticaldescription}" />
                     </Select>
 					<Label text="Violation Type Name" required="true"/>
 					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_VIOLATIONTYPE_VH',templateShareable: true}">

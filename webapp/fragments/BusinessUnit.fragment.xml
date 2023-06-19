@@ -11,7 +11,7 @@
                     <Label text="vertical" required="true"/>
                     <!-- Mohammad Sohail: verticle should be in selectBox -->
                        <Select forceSelection="false" enabled="false" items="{path: '/ZDD_Vertical_VH', templateShareable: true}">
-                        <core:Item key="{vertical}" text="{verticaldescription}" />
+                        <core:Item key="{verticaldescription}" text="{verticaldescription}" />
                     </Select>
                     <Label text="Child Business Unit" />
                     <Select forceSelection="false" items="{path: '/ZDD_CHILD_BU_VH',templateShareable: true}">

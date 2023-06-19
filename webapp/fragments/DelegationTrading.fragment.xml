@@ -44,7 +44,7 @@
                     </Select>
 					<Label text="Vertical" required="true"/>
 					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
-                        <core:Item key="{vertical}" text="{verticaldescription}" />
+                        <core:Item key="{verticaldescription}" text="{verticaldescription}" />
                     </Select>
                     <Label text="Segment" required="true"/>
 					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_SEGMENT_VH',templateShareable: true}">
