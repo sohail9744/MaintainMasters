@@ -1954,9 +1954,9 @@ sap.ui.define([
                 this.expPayTerms = "new";
                 this.ExpPayTermsDlg.setTitle("Add New Export Payment Terms");
                 this.ExpPayTermsDlg.getContent()[0].getContent()[2].setValue().setEditable(true);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[4].setSelectedKey("").setEnabled(true);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[6].setSelectedKey("").setEnabled(true);
-                this.ExpPayTermsDlg.getContent()[0].getContent()[8].setSelectedKey("").setEnabled(true);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[4].setEnabled(true);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[6].setEnabled(true);
+                this.ExpPayTermsDlg.getContent()[0].getContent()[8].setEnabled(true);
                 this.ExpPayTermsDlg.getContent()[0].getContent()[10].setValue();
                 this.ExpPayTermsDlg.open();
             },
@@ -1982,7 +1982,7 @@ sap.ui.define([
                     debugger
                     this.ExpPayTermsDlg.setModel(new sap.ui.model.json.JSONModel(postObj));
                     if (this.expPayTerms == "new") {
-                        oModel.create("/zdd_paymentterm_vh", buObj, {
+                        oModel.create("/ZDD_EXP_PYTTERM_VH", buObj, {
                             success: function (oData, oResponse) {
                                 jQuery.sap.require("sap.m.MessageBox");
                                 sap.m.MessageBox.success("Payment Terms added successfully");

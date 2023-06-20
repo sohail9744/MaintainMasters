@@ -31,8 +31,7 @@
                     	<core:Item key="{businessunit}" text="{businessunit}" />
                     </Select>
 					<Label text="Vertical" required="true"/>
-					<!-- <Input value="{/vertical}" editable="false" maxLength="40"/> -->
-					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_Vertical_VH',templateShareable: true}">
+					<Select forceSelection="false" enabled="false" items="{path: '/ZDD_Vertical_VH', templateShareable: true}">
                         <core:Item key="{verticaldescription}" text="{verticaldescription}" />
                     </Select>
                     <Label text="Class Type" required="true"/>
